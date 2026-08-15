@@ -1,24 +1,344 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useMutation } from "@tanstack/react-query";
+import { useState, type FormEvent } from "react";
+import { toast } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { submitLead } from "@/lib/leads.functions";
+import heroImg from "@/assets/recovery-hero.jpg";
+import groundImg from "@/assets/ground-team.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Netstar Vehicle Tracking from R129pm | Get a Quote" },
+      {
+        name: "description",
+        content:
+          "Netstar vehicle tracking and stolen vehicle recovery in South Africa from R129 per month. Helicopter and ground recovery teams, 24/7. Request your free quote.",
+      },
+      { property: "og:title", content: "Netstar Vehicle Tracking from R129pm" },
+      {
+        property: "og:description",
+        content:
+          "Air and ground recovery teams protecting South African drivers. Get your free Netstar tracking quote in minutes.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const packages = [
+  {
+    name: "Netstar Essential",
+    price: "R129",
+    blurb: "Entry-level tracking and recovery for your everyday vehicle.",
+    features: ["Real-time vehicle tracking", "Stolen vehicle recovery", "24/7 emergency call centre"],
+  },
+  {
+    name: "Netstar Plus",
+    price: "R179",
+    blurb: "Our most popular cover with early-warning theft alerts.",
+    features: [
+      "Everything in Essential",
+      "Tow & tamper alerts",
+      "Air and ground recovery response",
+      "Netstar app for the whole family",
+    ],
+    featured: true,
+  },
+  {
+    name: "Netstar Fleet",
+    price: "R229",
+    blurb: "For bakkies, trucks and small business fleets.",
+    features: ["Driver behaviour reports", "Trip & fuel insights", "Multi-vehicle dashboard"],
+  },
+];
+
+const stats = [
+  { value: "90%+", label: "Recovery rate" },
+  { value: "24/7", label: "Emergency call centre" },
+  { value: "2m+", label: "Clients served" },
+  { value: "100+", label: "Fitment centres" },
+];
+
+function Logo() {
+  return (
+    <a href="#top" className="inline-block leading-none">
+      <span className="font-display text-2xl font-extrabold tracking-tight text-navy-foreground">
+        NETSTAR
+      </span>
+      <span className="mt-1 block h-[3px] w-full bg-primary" />
+      <span className="mt-1 block text-[9px] font-medium tracking-[0.2em] text-navy-foreground/70">
+        TRACKING &amp; RECOVERY
+      </span>
+    </a>
+  );
+}
+
+function QuoteForm() {
+  const send = useServerFn(submitLead);
+  const [form, setForm] = useState({ name: "", surname: "", cell: "", email: "", vehicle: "" });
+
+  const mutation = useMutation({
+    mutationFn: (data: typeof form) => send({ data }),
+    onSuccess: () => {
+      toast.success("Thank you! A Netstar consultant will call you shortly.");
+      setForm({ name: "", surname: "", cell: "", email: "", vehicle: "" });
+    },
+    onError: (error: Error) => toast.error(error.message || "Something went wrong. Please try again."),
+  });
+
+  const set = (key: keyof typeof form) => (e: { target: { value: string } }) =>
+    setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    mutation.mutate(form);
+  };
+
+  return (
+    <form
+      onSubmit={onSubmit}
+      className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-brand)] sm:p-8"
+    >
+      <h2 className="text-2xl font-bold text-card-foreground">Get your free quote</h2>
+      <p className="mt-1 text-sm text-muted-foreground">
+        Packages from R129 per month. We call you back the same day.
+      </p>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
+          <Label htmlFor="name">Name</Label>
+          <Input id="name" required value={form.name} onChange={set("name")} placeholder="Thabo" />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="surname">Surname</Label>
+          <Input
+            id="surname"
+            required
+            value={form.surname}
+            onChange={set("surname")}
+            placeholder="Mokoena"
+          />
+        </div>
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="cell">Cell number</Label>
+          <Input
+            id="cell"
+            type="tel"
+            required
+            value={form.cell}
+            onChange={set("cell")}
+            placeholder="082 123 4567"
+          />
+        </div>
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="email">Email (optional)</Label>
+          <Input
+            id="email"
+            type="email"
+            value={form.email}
+            onChange={set("email")}
+            placeholder="you@example.co.za"
+          />
+        </div>
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="vehicle">Car make and model (optional)</Label>
+          <Input
+            id="vehicle"
+            value={form.vehicle}
+            onChange={set("vehicle")}
+            placeholder="Toyota Hilux 2.4 GD-6"
+          />
+        </div>
+      </div>
+
+      <Button type="submit" size="lg" className="mt-6 w-full text-base" disabled={mutation.isPending}>
+        {mutation.isPending ? "Sending..." : "Request my quote"}
+      </Button>
+      <p className="mt-3 text-xs text-muted-foreground">
+        By submitting you agree to be contacted about Netstar tracking products.
+      </p>
+    </form>
+  );
+}
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div id="top" className="min-h-screen bg-background">
+      <Toaster position="top-center" />
+
+      <header className="bg-navy">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+          <Logo />
+          <div className="flex items-center gap-3">
+            <span className="hidden text-sm text-navy-foreground/80 sm:inline">
+              Sales 0860 12 24 36
+            </span>
+            <Button asChild variant="secondary" className="bg-lime text-lime-foreground hover:bg-lime/90">
+              <a href="#quote">Get a quote</a>
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      <section className="relative isolate overflow-hidden bg-navy">
+        <img
+          src={heroImg}
+          alt="Netstar helicopter and ground recovery team recovering a stolen car in South Africa"
+          width={1600}
+          height={1008}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="hero-overlay absolute inset-0" />
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
+          <div className="max-w-xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-lime">
+              Vehicle tracking &amp; recovery
+            </p>
+            <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] text-navy-foreground sm:text-5xl lg:text-6xl">
+              Air and ground teams that bring your car <span className="text-lime">back</span>.
+            </h1>
+            <p className="mt-5 text-lg text-navy-foreground/80">
+              South Africa&apos;s first vehicle tracking and recovery company. Helicopter units,
+              armed response and a 24/7 control room — from R129 per month.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button asChild size="lg" className="bg-lime text-lime-foreground hover:bg-lime/90">
+                <a href="#quote">Get my quote from R129pm</a>
+              </Button>
+              <a href="tel:0860122436" className="text-sm font-semibold text-navy-foreground underline-offset-4 hover:underline">
+                Or call 0860 12 24 36
+              </a>
+            </div>
+          </div>
+          <div id="quote" className="scroll-mt-20">
+            <QuoteForm />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-secondary">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-10 md:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <p className="text-3xl font-extrabold text-primary">{s.value}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <img
+            src={groundImg}
+            alt="Netstar ground recovery team inspecting a recovered vehicle at night in South Africa"
+            width={1200}
+            height={912}
+            loading="lazy"
+            className="w-full rounded-2xl object-cover"
+          />
+          <div>
+            <h2 className="text-3xl font-extrabold sm:text-4xl">
+              Recovery in the air, on the ground, in minutes
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              The moment your vehicle is reported stolen, our control room dispatches the closest
+              response unit. Helicopters track from above while ground teams close in on the ground —
+              the combination behind a 90%+ recovery rate.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm">
+              {[
+                "Live tracking from the Netstar app",
+                "Nationwide helicopter and ground response",
+                "Tow-away, jamming and tamper alerts",
+                "Insurance-approved fitment at your home or office",
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary py-16">
+        <div className="mx-auto max-w-6xl px-5">
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Packages from R129 per month</h2>
+          <p className="mt-2 text-muted-foreground">Month-to-month options. No hidden fitment fees.</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {packages.map((p) => (
+              <div
+                key={p.name}
+                className={
+                  p.featured
+                    ? "brand-gradient rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
+                    : "rounded-2xl border border-border bg-card p-7"
+                }
+              >
+                <h3 className="text-xl font-bold">{p.name}</h3>
+                <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
+                  {p.blurb}
+                </p>
+                <p className="mt-5 text-4xl font-extrabold">
+                  {p.price}
+                  <span className="ml-1 text-base font-medium opacity-70">pm</span>
+                </p>
+                <ul className="mt-5 space-y-2 text-sm">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex gap-2">
+                      <span className={p.featured ? "text-lime" : "text-primary"}>✓</span>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  asChild
+                  className={
+                    p.featured
+                      ? "mt-7 w-full bg-lime text-lime-foreground hover:bg-lime/90"
+                      : "mt-7 w-full"
+                  }
+                >
+                  <a href="#quote">Get this quote</a>
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-navy py-16">
+        <div className="mx-auto max-w-3xl px-5 text-center">
+          <h2 className="text-3xl font-extrabold text-navy-foreground sm:text-4xl">
+            Protect your vehicle today
+          </h2>
+          <p className="mt-3 text-navy-foreground/80">
+            Fill in the form and a consultant will call you back with your tailored quote.
+          </p>
+          <Button asChild size="lg" className="mt-7 bg-lime text-lime-foreground hover:bg-lime/90">
+            <a href="#quote">Request my quote</a>
+          </Button>
+        </div>
+      </section>
+
+      <footer className="bg-navy py-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 border-t border-navy-foreground/15 px-5 pt-8 text-sm text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
+          <span>© {new Date().getFullYear()} Netstar authorised sales partner</span>
+          <a href="mailto:info@motorprime.co.za" className="hover:text-navy-foreground">
+            info@motorprime.co.za
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
