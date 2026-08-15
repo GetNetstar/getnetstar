@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { submitLead } from "@/lib/leads.functions";
 import heroImg from "@/assets/recovery-hero.jpg";
 import groundImg from "@/assets/ground-team.jpg";
+import logoAsset from "@/assets/netstar-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,28 +36,65 @@ export const Route = createFileRoute("/")({
 
 const packages = [
   {
-    name: "Netstar Essential",
+    name: "STAR tag",
     price: "R129",
-    blurb: "Entry-level tracking and recovery for your everyday vehicle.",
-    features: ["Real-time vehicle tracking", "Stolen vehicle recovery", "24/7 emergency call centre"],
+    blurb: "Our most affordable option for hi-jacking and stolen vehicle recovery.",
+    features: [
+      "Stolen Vehicle Recovery Service",
+      "Fitment Certificate For Insurance",
+      "Wireless Unit With 3 Year Battery Life",
+      "MyNetstar Account Management",
+      "MyNetstar Licence Renewal Alerts",
+      "MyNetstar Approximate Location",
+    ],
   },
   {
-    name: "Netstar Plus",
-    price: "R179",
-    blurb: "Our most popular cover with early-warning theft alerts.",
+    name: "NETSTAR Plus",
+    price: "R199",
+    blurb: "Our essential tracking and recovery option with added safety.",
     features: [
-      "Everything in Essential",
-      "Tow & tamper alerts",
-      "Air and ground recovery response",
-      "Netstar app for the whole family",
+      "Stolen Vehicle Recovery Service",
+      "Fitment Certificate For Insurance",
+      "Signal Jamming Detection Alert",
+      "Jamming Resist Technology",
+      "Impact Detection For Safety",
+      "Battery Disconnect Alert",
+      "MyNetstar Test Certificate",
+      "Logbook For SARS",
+      "Personal Driver Behavior Rating",
+      "Car Park Jamming Alert",
+      "MyNetstar Live Tracking",
+      "MyNetstar Trip Replays",
+      "Geofencing",
+      "Extras: Panic Button",
     ],
     featured: true,
   },
   {
-    name: "Netstar Fleet",
-    price: "R229",
-    blurb: "For bakkies, trucks and small business fleets.",
-    features: ["Driver behaviour reports", "Trip & fuel insights", "Multi-vehicle dashboard"],
+    name: "NETSTAR Early Warning",
+    price: "R239",
+    blurb:
+      "Our most comprehensive vehicle tracking and recovery option with all-round protection for you and your family.",
+    features: [
+      "Stolen Vehicle Recovery Service",
+      "Fitment Certificate For Insurance",
+      "Signal Jamming Detection Alert",
+      "Jamming Resist Technology",
+      "Impact Detection For Safety",
+      "Battery Disconnect Alert",
+      "MyNetstar Test Certificate",
+      "Logbook For SARS",
+      "Personal Driver Behavior Rating",
+      "Car Park Jamming Alert",
+      "MyNetstar Live Tracking",
+      "MyNetstar Trip Replays",
+      "Geofencing",
+      "Panic Button",
+      "Auto-arm Proximity Tag For Security",
+      "Early Warning Theft Alert",
+      "Tow-away Alert",
+      "MyNetstar Auto-arm",
+    ],
   },
 ];
 
@@ -70,13 +108,13 @@ const stats = [
 function Logo() {
   return (
     <a href="#top" className="inline-block leading-none">
-      <span className="font-display text-2xl font-extrabold tracking-tight text-navy-foreground">
-        NETSTAR
-      </span>
-      <span className="mt-1 block h-[3px] w-full bg-primary" />
-      <span className="mt-1 block text-[9px] font-medium tracking-[0.2em] text-navy-foreground/70">
-        TRACKING &amp; RECOVERY
-      </span>
+      <img
+        src={logoAsset.url}
+        alt="Netstar vehicle tracking and recovery logo"
+        width={300}
+        height={120}
+        className="h-11 w-auto"
+      />
     </a>
   );
 }
