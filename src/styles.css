@@ -158,5 +158,22 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility hero-overlay {
+  background-image: var(--gradient-hero);
+}
+
+@utility brand-gradient {
+  background-image: var(--gradient-brand);
 }
