@@ -16,7 +16,13 @@ export const submitLead = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const res = await fetch("https://formsubmit.co/ajax/info@motorprime.co.za", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        // FormSubmit rejects requests without a web origin/referer.
+        Origin: "https://getnetstar.lovable.app",
+        Referer: "https://getnetstar.lovable.app/",
+      },
       body: JSON.stringify({
         _subject: `New Netstar quote lead: ${data.name} ${data.surname}`,
         _template: "table",
@@ -33,6 +39,12 @@ export const submitLead = createServerFn({ method: "POST" })
     if (!res.ok) {
       const body = await res.text();
       console.error(`Lead email failed [${res.status}]: ${body}`);
+      throw new Error("We could not send your request right now. Please call us instead.");
+    }
+
+    const result = (await res.json().catch(() => ({}))) as { success?: string; message?: string };
+    if (result.success === "false") {
+      console.error(`Lead email rejected: ${result.message}`);
       throw new Error("We could not send your request right now. Please call us instead.");
     }
 
