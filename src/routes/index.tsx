@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { submitLead } from "@/lib/leads.functions";
-import heroImg from "@/assets/recovery-hero.jpg";
-import groundImg from "@/assets/ground-team.jpg";
+import heroAsset from "@/assets/netstar-helicopter.jpg.asset.json";
+import groundAsset from "@/assets/netstar-response-bakkie.jpg.asset.json";
 import logoAsset from "@/assets/netstar-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -228,10 +228,10 @@ function Index() {
 
       <section className="relative isolate overflow-hidden bg-navy">
         <img
-          src={heroImg}
-          alt="Netstar helicopter and ground recovery team recovering a stolen car in South Africa"
-          width={1600}
-          height={1008}
+          src={heroAsset.url}
+          alt="Netstar branded recovery helicopter on the helipad at the Netstar hangar in South Africa"
+          width={600}
+          height={338}
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" />
@@ -276,10 +276,10 @@ function Index() {
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <img
-            src={groundImg}
-            alt="Netstar ground recovery team inspecting a recovered vehicle at night in South Africa"
-            width={1200}
-            height={912}
+            src={groundAsset.url}
+            alt="Netstar branded ground response bakkie used for vehicle tracking and stolen vehicle recovery in South Africa"
+            width={658}
+            height={283}
             loading="lazy"
             className="w-full rounded-2xl object-cover"
           />
