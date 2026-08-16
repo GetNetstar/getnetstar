@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { submitLead } from "@/lib/leads.functions";
 import heroImg from "@/assets/recovery-hero.jpg";
-import groundImg from "@/assets/ground-team.jpg";
 import logoAsset from "@/assets/netstar-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -276,10 +275,10 @@ function Index() {
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <img
-            src={groundImg}
-            alt="Netstar branded ground response bakkie and officers with a recovered stolen car at night in South Africa"
-            width={1200}
-            height={912}
+            src={heroImg}
+            alt="Netstar branded recovery helicopter tracking a stolen vehicle from the air in South Africa"
+            width={1600}
+            height={1008}
             loading="lazy"
             className="w-full rounded-2xl object-cover"
           />
