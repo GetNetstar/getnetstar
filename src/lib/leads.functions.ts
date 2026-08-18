@@ -11,42 +11,88 @@ const leadSchema = z.object({
 
 export type LeadInput = z.infer<typeof leadSchema>;
 
+const FALLBACK_MESSAGE =
+  "We could not send your request right now. Please call 0860 12 24 36 or email info@motorprime.co.za.";
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => leadSchema.parse(data))
   .handler(async ({ data }) => {
-    const res = await fetch("https://formsubmit.co/ajax/info@motorprime.co.za", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        // FormSubmit rejects requests without a web origin/referer.
-        Origin: "https://getnetstar.lovable.app",
-        Referer: "https://getnetstar.lovable.app/",
-      },
-      body: JSON.stringify({
-        _subject: `New Netstar quote lead: ${data.name} ${data.surname}`,
-        _template: "table",
-        _captcha: "false",
-        Name: data.name,
-        Surname: data.surname,
-        "Cell Number": data.cell,
-        Email: data.email || "Not provided",
-        "Vehicle Make & Model": data.vehicle || "Not provided",
-        Source: "Netstar quote landing page",
-      }),
-    });
+    const fields: Record<string, string> = {
+      _subject: `New Netstar quote lead: ${data.name} ${data.surname}`,
+      _template: "table",
+      _captcha: "false",
+      Name: data.name,
+      Surname: data.surname,
+      "Cell Number": data.cell,
+      Email: data.email || "Not provided",
+      "Vehicle Make & Model": data.vehicle || "Not provided",
+      Source: "Netstar quote landing page",
+    };
 
-    if (!res.ok) {
-      const body = await res.text();
-      console.error(`Lead email failed [${res.status}]: ${body}`);
-      throw new Error("We could not send your request right now. Please call us instead.");
+    const baseHeaders = {
+      // FormSubmit rejects requests without a web origin/referer.
+      Origin: "https://getnetstar.lovable.app",
+      Referer: "https://getnetstar.lovable.app/",
+    };
+
+    // 1) AJAX endpoint (JSON response). 2) Classic form-encoded endpoint as fallback.
+    const attempt = async (mode: "ajax" | "form") => {
+      if (mode === "ajax") {
+        const res = await fetch("https://formsubmit.co/ajax/info@motorprime.co.za", {
+          method: "POST",
+          headers: { ...baseHeaders, "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(fields),
+        });
+        const text = await res.text();
+        if (!res.ok) return { ok: false, info: `ajax ${res.status}: ${text.slice(0, 200)}` };
+        const parsed = (() => {
+          try {
+            return JSON.parse(text) as { success?: string | boolean; message?: string };
+          } catch {
+            return {} as { success?: string | boolean; message?: string };
+          }
+        })();
+        if (parsed.success === "false" || parsed.success === false) {
+          return { ok: false, info: `ajax rejected: ${parsed.message ?? text.slice(0, 200)}` };
+        }
+        return { ok: true, info: "" };
+      }
+
+      const body = new URLSearchParams(fields).toString();
+      const res = await fetch("https://formsubmit.co/info@motorprime.co.za", {
+        method: "POST",
+        headers: { ...baseHeaders, "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+        redirect: "follow",
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        return { ok: false, info: `form ${res.status}: ${text.slice(0, 200)}` };
+      }
+      return { ok: true, info: "" };
+    };
+    const plan: Array<{ mode: "ajax" | "form"; waitBefore: number }> = [
+      { mode: "ajax", waitBefore: 0 },
+      { mode: "form", waitBefore: 800 },
+      { mode: "ajax", waitBefore: 2500 },
+      { mode: "form", waitBefore: 4000 },
+    ];
+
+    let lastInfo = "unknown";
+    for (const step of plan) {
+      if (step.waitBefore) await sleep(step.waitBefore);
+      try {
+        const result = await attempt(step.mode);
+        if (result.ok) return { ok: true as const };
+        lastInfo = result.info;
+      } catch (error) {
+        lastInfo = `${step.mode} threw: ${(error as Error).message}`;
+      }
+      console.error(`Lead email attempt failed (${step.mode}): ${lastInfo}`);
     }
 
-    const result = (await res.json().catch(() => ({}))) as { success?: string; message?: string };
-    if (result.success === "false") {
-      console.error(`Lead email rejected: ${result.message}`);
-      throw new Error("We could not send your request right now. Please call us instead.");
-    }
-
-    return { ok: true as const };
+    console.error(`Lead email failed after retries: ${lastInfo}`);
+    throw new Error(FALLBACK_MESSAGE);
   });
