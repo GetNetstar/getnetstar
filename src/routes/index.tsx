@@ -199,6 +199,16 @@ function QuoteForm() {
       <Button type="submit" size="lg" className="mt-6 w-full text-base" disabled={mutation.isPending}>
         {mutation.isPending ? "Sending..." : "Request my quote"}
       </Button>
+      {mutation.isSuccess && (
+        <p role="status" className="mt-3 rounded-lg bg-primary/10 px-3 py-2 text-sm font-medium text-primary">
+          Thank you! A Netstar consultant will call you shortly.
+        </p>
+      )}
+      {mutation.isError && (
+        <p role="alert" className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
+          {mutation.error?.message || "Something went wrong. Please call 0860 12 24 36."}
+        </p>
+      )}
       <p className="mt-3 text-xs text-muted-foreground">
         By submitting you agree to be contacted about Netstar tracking products.
       </p>
