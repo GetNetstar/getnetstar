@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
@@ -8,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import heroImg from "@/assets/recovery-hero.jpg";
 import logoAsset from "@/assets/netstar-logo.png.asset.json";
+import { submitLead } from "@/lib/leads.functions";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -118,33 +120,10 @@ function Logo() {
 
 function QuoteForm() {
   const [form, setForm] = useState({ name: "", surname: "", cell: "", email: "", vehicle: "" });
+  const sendLead = useServerFn(submitLead);
 
   const mutation = useMutation({
-    mutationFn: async (data: typeof form) => {
-      const response = await fetch("https://formsubmit.co/ajax/info@motorprime.co.za", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `New Netstar quote lead: ${data.name} ${data.surname}`,
-          _template: "table",
-          _captcha: "false",
-          Name: data.name,
-          Surname: data.surname,
-          "Cell Number": data.cell,
-          Email: data.email || "Not provided",
-          "Vehicle Make & Model": data.vehicle || "Not provided",
-          Source: "Netstar quote landing page",
-        }),
-      });
-      const result = (await response.json().catch(() => null)) as {
-        success?: string | boolean;
-      } | null;
-      if (!response.ok || result?.success === false || result?.success === "false") {
-        throw new Error(
-          "We could not send your request right now. Please call 0860 12 24 36 or email info@motorprime.co.za.",
-        );
-      }
-    },
+    mutationFn: (data: typeof form) => sendLead({ data }),
     onSuccess: () => {
       toast.success("Thank you! A Netstar consultant will call you shortly.");
       setForm({ name: "", surname: "", cell: "", email: "", vehicle: "" });
