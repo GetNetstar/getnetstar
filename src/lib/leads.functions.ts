@@ -12,6 +12,10 @@ const leadSchema = z.object({
 const esc = (v: string) =>
   v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+const SITE = "https://getnetstar.lovable.app";
+const NETSTAR_LOGO = `${SITE}/__l5e/assets-v1/8a8cbf31-964c-41f1-b0f8-52cb1aeb9eb1/netstar-logo.png`;
+const MOTORPRIME_LOGO = `${SITE}/__l5e/assets-v1/71232c56-8021-4b7a-9b5b-25db094ee4f1/motorprime-logo-white.png`;
+
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => leadSchema.parse(data))
   .handler(async ({ data }) => {
@@ -30,12 +34,34 @@ export const submitLead = createServerFn({ method: "POST" })
       ["Source", "getnetstar.co.za quote form"],
     ];
 
-    const html = `<h2>New Netstar quote lead</h2><table cellpadding="6" style="border-collapse:collapse">${rows
+    const tableRows = rows
       .map(
         ([k, v]) =>
-          `<tr><td style="border:1px solid #ddd"><strong>${esc(k)}</strong></td><td style="border:1px solid #ddd">${esc(v)}</td></tr>`,
+          `<tr><td style="padding:12px 16px;border-bottom:1px solid #e6e8ec;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b7280;width:42%">${esc(k)}</td><td style="padding:12px 16px;border-bottom:1px solid #e6e8ec;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0b1533;font-weight:bold">${esc(v)}</td></tr>`,
       )
-      .join("")}</table>`;
+      .join("");
+
+    const html = `<!doctype html><html><body style="margin:0;padding:0;background:#f4f5f7">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f5f7;padding:24px 0">
+<tr><td align="center">
+<table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">
+  <tr><td style="background:#0b1533;padding:24px 28px" align="left">
+    <img src="${NETSTAR_LOGO}" alt="Netstar" width="170" style="display:block;border:0;height:auto" />
+  </td></tr>
+  <tr><td style="height:5px;background:#8ac800"></td></tr>
+  <tr><td style="padding:28px">
+    <h1 style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#0b1533">New Netstar Quote Request</h1>
+    <p style="margin:0 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#6b7280">${esc(data.name)} ${esc(data.surname)} requested a quote on getnetstar.co.za.</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e6e8ec;border-radius:10px;border-collapse:separate">${tableRows}</table>
+    <p style="margin:22px 0 0"><a href="tel:${esc(data.cell.replace(/[^\d+]/g, ""))}" style="display:inline-block;background:#8ac800;color:#0b1533;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:8px">Call ${esc(data.name)}</a></p>
+  </td></tr>
+  <tr><td style="background:#0b1533;padding:24px 28px" align="center">
+    <img src="${MOTORPRIME_LOGO}" alt="Motor Prime" width="200" style="display:block;border:0;height:auto;margin:0 auto 10px" />
+    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffffff;letter-spacing:.04em">An Approved Netstar Partner</p>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>`;
 
     const response = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
       method: "POST",
@@ -48,7 +74,7 @@ export const submitLead = createServerFn({ method: "POST" })
         from: "Netstar Quotes <leads@getnetstar.co.za>",
         to: ["info@motorprime.co.za"],
         ...(data.email ? { reply_to: data.email } : {}),
-        subject: `New Netstar quote lead: ${data.name} ${data.surname}`,
+        subject: `New Netstar Quote Request: ${data.name} ${data.surname}`,
         html,
       }),
     });
