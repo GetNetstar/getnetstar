@@ -7,7 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import heroImg from "@/assets/recovery-hero.jpg";
+import heliAsset from "@/assets/netstar-heli-pad.jpg.asset.json";
+import sceneAsset from "@/assets/netstar-recovery-scene.png.asset.json";
 import logoAsset from "@/assets/netstar-logo.png.asset.json";
 import { submitLead } from "@/lib/leads.functions";
 
@@ -237,8 +238,8 @@ function Index() {
 
       <section className="relative isolate overflow-hidden bg-navy">
         <img
-          src={heroImg}
-          alt="Netstar branded recovery helicopter with searchlight over a recovered vehicle in South Africa"
+          src={heliAsset.url}
+          alt="Netstar branded recovery helicopter on a landing pad in South Africa"
           width={1600}
           height={1008}
           className="absolute inset-0 h-full w-full object-cover"
@@ -285,8 +286,8 @@ function Index() {
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <img
-            src={heroImg}
-            alt="Netstar branded recovery helicopter tracking a stolen vehicle from the air in South Africa"
+            src={sceneAsset.url}
+            alt="Netstar helicopter and ground recovery team in action recovering a stolen vehicle in South Africa"
             width={1600}
             height={1008}
             loading="lazy"
