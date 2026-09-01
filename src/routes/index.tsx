@@ -238,8 +238,8 @@ function Index() {
 
       <section className="relative isolate overflow-hidden bg-navy">
         <img
-          src={heroImg}
-          alt="Netstar branded recovery helicopter with searchlight over a recovered vehicle in South Africa"
+          src={heliAsset.url}
+          alt="Netstar branded recovery helicopter on a landing pad in South Africa"
           width={1600}
           height={1008}
           className="absolute inset-0 h-full w-full object-cover"
