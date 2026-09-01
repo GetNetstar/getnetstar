@@ -208,7 +208,7 @@ function QuoteForm() {
       )}
       {mutation.isError && (
         <p role="alert" className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
-          {mutation.error?.message || "Something went wrong. Please call 0860 12 24 36."}
+          {mutation.error?.message || "Something went wrong. Please call 087 821 6175."}
         </p>
       )}
       <p className="mt-3 text-xs text-muted-foreground">
@@ -228,7 +228,7 @@ function Index() {
           <Logo />
           <div className="flex items-center gap-3">
             <span className="hidden text-sm text-navy-foreground/80 sm:inline">
-              Sales 0860 12 24 36
+              Sales 087 821 6175
             </span>
             <Button asChild variant="secondary" className="bg-lime text-lime-foreground hover:bg-lime/90">
               <a href="#quote">Get a quote</a>
@@ -262,8 +262,8 @@ function Index() {
               <Button asChild size="lg" className="bg-lime text-lime-foreground hover:bg-lime/90">
                 <a href="#quote">Get my quote from R129pm</a>
               </Button>
-              <a href="tel:0860122436" className="text-sm font-semibold text-navy-foreground underline-offset-4 hover:underline">
-                Or call 0860 12 24 36
+              <a href="tel:0878216175" className="text-sm font-semibold text-navy-foreground underline-offset-4 hover:underline">
+                Or call 087 821 6175
               </a>
             </div>
           </div>
@@ -382,9 +382,9 @@ function Index() {
 
       <footer className="bg-navy py-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 border-t border-navy-foreground/15 px-5 pt-8 text-sm text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <span>© {new Date().getFullYear()} Netstar authorised sales partner</span>
-            <div className="flex items-center gap-3 border-l-0 pl-0 sm:border-l sm:border-navy-foreground/15 sm:pl-6">
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-6">
+            <div className="flex flex-col items-start gap-1">
+              <span className="font-medium text-navy-foreground/80">An Approved Netstar Partner</span>
               <img
                 src={motorprimeAsset.url}
                 alt="Motor Prime logo"
@@ -392,11 +392,10 @@ function Index() {
                 height={40}
                 className="h-8 w-auto"
               />
-              <span className="font-medium text-navy-foreground/80">An Approved Netstar Partner</span>
             </div>
           </div>
-          <a href="mailto:info@motorprime.co.za" className="hover:text-navy-foreground">
-            info@motorprime.co.za
+          <a href="mailto:info@getnetstar.co.za" className="hover:text-navy-foreground">
+            info@getnetstar.co.za
           </a>
         </div>
       </footer>
