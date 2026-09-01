@@ -286,8 +286,8 @@ function Index() {
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <img
-            src={heroImg}
-            alt="Netstar branded recovery helicopter tracking a stolen vehicle from the air in South Africa"
+            src={sceneAsset.url}
+            alt="Netstar helicopter and ground recovery team in action recovering a stolen vehicle in South Africa"
             width={1600}
             height={1008}
             loading="lazy"
