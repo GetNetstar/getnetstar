@@ -208,7 +208,7 @@ function QuoteForm() {
       )}
       {mutation.isError && (
         <p role="alert" className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
-          {mutation.error?.message || "Something went wrong. Please call 0860 12 24 36."}
+          {mutation.error?.message || "Something went wrong. Please call 087 821 6175."}
         </p>
       )}
       <p className="mt-3 text-xs text-muted-foreground">

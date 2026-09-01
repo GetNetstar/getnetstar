@@ -83,7 +83,7 @@ export const submitLead = createServerFn({ method: "POST" })
       const body = await response.text();
       console.error(`Resend send failed [${response.status}]: ${body}`);
       throw new Error(
-        "We could not send your request right now. Please call 0860 12 24 36 or email info@motorprime.co.za.",
+        "We could not send your request right now. Please call 087 821 6175 or email info@getnetstar.co.za.",
       );
     }
 
