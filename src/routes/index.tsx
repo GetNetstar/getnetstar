@@ -357,10 +357,28 @@ function Index() {
                 key={p.name}
                 className={
                   p.featured
-                    ? "brand-gradient rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
-                    : "rounded-2xl border border-border bg-card p-7"
+                    ? "brand-gradient overflow-hidden rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
+                    : "overflow-hidden rounded-2xl border border-border bg-card p-7"
                 }
               >
+                <div className="-mx-7 -mt-7 mb-6 flex items-center justify-between gap-3 bg-navy px-7 py-4">
+                  <img
+                    src={logoAsset.url}
+                    alt="Netstar"
+                    width={200}
+                    height={80}
+                    className="h-7 w-auto"
+                  />
+                  {p.featured ? (
+                    <span className="rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground">
+                      Most popular
+                    </span>
+                  ) : (
+                    <span className="text-xs font-semibold uppercase tracking-wide text-navy-foreground/70">
+                      Approved partner
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-xl font-bold">{p.name}</h3>
                 <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
                   {p.blurb}
