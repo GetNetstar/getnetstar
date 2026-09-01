@@ -106,6 +106,33 @@ const stats = [
   { value: "100+", label: "Fitment centres" },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "Thank you for the outstanding recovery of our fleet vehicle on 13 August 2025. Their swift response, professionalism, and constant updates gave us peace of mind. We will not hesitate to recommend your company to anyone in need of reliable vehicle tracking and recovery services.",
+    name: "Ryan Gibbons",
+    role: "COO, Biddulphs",
+  },
+  {
+    quote:
+      "Netstar is more than just our tracking and technology partner. What their hardware and software technology allows us to do, it's incredible and it means we can focus more on moving people safely on a daily basis.",
+    name: "Jack Sekwaila",
+    role: "Executive Group Operations Manager, PUTCO",
+  },
+  {
+    quote:
+      "The partnership between Netstar and Toyota South Africa is a testament to our shared commitment to conserving wildlife and protecting the environment. Toyota South Africa is proud to partner with Netstar's technology and the project is yielding stellar results as we strive to eradicate rhino poaching.",
+    name: "John Thomson",
+    role: "Vice President Services, Toyota South Africa",
+  },
+  {
+    quote:
+      "We really needed to partner with a technology company. We know that technology changes very quickly and we need to stay abreast. We felt that Netstar was in a growing phase, and they had some new innovation that was to follow. We are getting the benefits of it now.",
+    name: "Julian Visagie",
+    role: "CEO, Hertz South Africa",
+  },
+];
+
 function Logo() {
   return (
     <a href="#top" className="inline-block leading-none">
@@ -330,10 +357,28 @@ function Index() {
                 key={p.name}
                 className={
                   p.featured
-                    ? "brand-gradient rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
-                    : "rounded-2xl border border-border bg-card p-7"
+                    ? "brand-gradient overflow-hidden rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
+                    : "overflow-hidden rounded-2xl border border-border bg-card p-7"
                 }
               >
+                <div className="-mx-7 -mt-7 mb-6 flex items-center justify-between gap-3 bg-navy px-7 py-4">
+                  <img
+                    src={logoAsset.url}
+                    alt="Netstar"
+                    width={200}
+                    height={80}
+                    className="h-7 w-auto"
+                  />
+                  {p.featured ? (
+                    <span className="rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground">
+                      Most popular
+                    </span>
+                  ) : (
+                    <span className="text-xs font-semibold uppercase tracking-wide text-navy-foreground/70">
+                      Approved partner
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-xl font-bold">{p.name}</h3>
                 <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
                   {p.blurb}
@@ -365,6 +410,28 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <h2 className="text-3xl font-extrabold sm:text-4xl">What our clients say</h2>
+        <p className="mt-2 text-muted-foreground">
+          Trusted by South Africa&apos;s biggest fleets and families alike.
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="rounded-2xl border border-border bg-card p-7">
+              <span className="text-4xl font-extrabold leading-none text-primary">&ldquo;</span>
+              <blockquote className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-5 border-t border-border pt-4">
+                <span className="block font-bold">{t.name}</span>
+                <span className="block text-sm text-muted-foreground">{t.role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
 
       <section className="bg-navy py-16">
         <div className="mx-auto max-w-3xl px-5 text-center">
