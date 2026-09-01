@@ -106,6 +106,33 @@ const stats = [
   { value: "100+", label: "Fitment centres" },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "Thank you for the outstanding recovery of our fleet vehicle on 13 August 2025. Their swift response, professionalism, and constant updates gave us peace of mind. We will not hesitate to recommend your company to anyone in need of reliable vehicle tracking and recovery services.",
+    name: "Ryan Gibbons",
+    role: "COO, Biddulphs",
+  },
+  {
+    quote:
+      "Netstar is more than just our tracking and technology partner. What their hardware and software technology allows us to do, it's incredible and it means we can focus more on moving people safely on a daily basis.",
+    name: "Jack Sekwaila",
+    role: "Executive Group Operations Manager, PUTCO",
+  },
+  {
+    quote:
+      "The partnership between Netstar and Toyota South Africa is a testament to our shared commitment to conserving wildlife and protecting the environment. Toyota South Africa is proud to partner with Netstar's technology and the project is yielding stellar results as we strive to eradicate rhino poaching.",
+    name: "John Thomson",
+    role: "Vice President Services, Toyota South Africa",
+  },
+  {
+    quote:
+      "We really needed to partner with a technology company. We know that technology changes very quickly and we need to stay abreast. We felt that Netstar was in a growing phase, and they had some new innovation that was to follow. We are getting the benefits of it now.",
+    name: "Julian Visagie",
+    role: "CEO, Hertz South Africa",
+  },
+];
+
 function Logo() {
   return (
     <a href="#top" className="inline-block leading-none">
