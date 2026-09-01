@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import heliAsset from "@/assets/netstar-heli-pad.jpg.asset.json";
 import sceneAsset from "@/assets/netstar-recovery-scene.png.asset.json";
 import logoAsset from "@/assets/netstar-logo.png.asset.json";
+import motorprimeAsset from "@/assets/motorprime-logo-white.png.asset.json";
 import { submitLead } from "@/lib/leads.functions";
 
 export const Route = createFileRoute("/")({
