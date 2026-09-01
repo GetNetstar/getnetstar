@@ -381,8 +381,20 @@ function Index() {
       </section>
 
       <footer className="bg-navy py-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 border-t border-navy-foreground/15 px-5 pt-8 text-sm text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Netstar authorised sales partner</span>
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 border-t border-navy-foreground/15 px-5 pt-8 text-sm text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span>© {new Date().getFullYear()} Netstar authorised sales partner</span>
+            <div className="flex items-center gap-3 border-l-0 pl-0 sm:border-l sm:border-navy-foreground/15 sm:pl-6">
+              <img
+                src={motorprimeAsset.url}
+                alt="Motor Prime logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto"
+              />
+              <span className="font-medium text-navy-foreground/80">An Approved Netstar Partner</span>
+            </div>
+          </div>
           <a href="mailto:info@motorprime.co.za" className="hover:text-navy-foreground">
             info@motorprime.co.za
           </a>
