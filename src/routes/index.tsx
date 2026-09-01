@@ -411,6 +411,28 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <h2 className="text-3xl font-extrabold sm:text-4xl">What our clients say</h2>
+        <p className="mt-2 text-muted-foreground">
+          Trusted by South Africa&apos;s biggest fleets and families alike.
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {testimonials.map((t) => (
+            <figure key={t.name} className="rounded-2xl border border-border bg-card p-7">
+              <span className="text-4xl font-extrabold leading-none text-primary">&ldquo;</span>
+              <blockquote className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {t.quote}
+              </blockquote>
+              <figcaption className="mt-5 border-t border-border pt-4">
+                <span className="block font-bold">{t.name}</span>
+                <span className="block text-sm text-muted-foreground">{t.role}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+
       <section className="bg-navy py-16">
         <div className="mx-auto max-w-3xl px-5 text-center">
           <h2 className="text-3xl font-extrabold text-navy-foreground sm:text-4xl">
