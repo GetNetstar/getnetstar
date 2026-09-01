@@ -7,7 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import heroImg from "@/assets/recovery-hero.jpg";
+import heliAsset from "@/assets/netstar-heli-pad.jpg.asset.json";
+import sceneAsset from "@/assets/netstar-recovery-scene.png.asset.json";
 import logoAsset from "@/assets/netstar-logo.png.asset.json";
 import { submitLead } from "@/lib/leads.functions";
 
