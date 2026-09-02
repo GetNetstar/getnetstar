@@ -39,6 +39,7 @@ const packages = [
   {
     name: "STAR tag",
     price: "R129",
+    badge: "BASIC TRACKING",
     blurb: "Our most affordable option for hi-jacking and stolen vehicle recovery.",
     features: [
       "Stolen Vehicle Recovery Service",
@@ -52,6 +53,7 @@ const packages = [
   {
     name: "NETSTAR Plus",
     price: "R199",
+    badge: "Most popular",
     blurb: "Our essential tracking and recovery option with added safety.",
     features: [
       "Stolen Vehicle Recovery Service",
@@ -74,6 +76,7 @@ const packages = [
   {
     name: "NETSTAR Early Warning",
     price: "R239",
+    badge: "EXTRA PROTECTION",
     blurb:
       "Our most comprehensive vehicle tracking and recovery option with all-round protection for you and your family.",
     features: [
@@ -96,6 +99,7 @@ const packages = [
       "Tow-away Alert",
       "MyNetstar Auto-arm",
     ],
+    highlight: true,
   },
 ];
 
