@@ -383,7 +383,7 @@ function Index() {
                 <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
                   {p.blurb}
                 </p>
-                <p className="mt-5 text-4xl font-extrabold">
+                <p className="mt-5 font-[Arial] text-4xl font-extrabold">
                   {p.price}
                   <span className="ml-1 text-base font-medium opacity-70">pm</span>
                 </p>
