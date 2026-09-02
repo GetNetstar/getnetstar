@@ -363,8 +363,8 @@ function Index() {
                   p.featured
                     ? "brand-gradient overflow-hidden rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
                     : p.highlight
-                      ? "overflow-hidden rounded-2xl border border-border bg-sky-50 p-7"
-                      : "overflow-hidden rounded-2xl border border-border bg-card p-7"
+                      ? "overflow-hidden rounded-2xl border border-border bg-sky-100 p-7"
+                      : "overflow-hidden rounded-2xl border border-border bg-slate-50 p-7"
                 }
               >
                 <div className="-mx-7 -mt-7 mb-6 flex items-center justify-between gap-3 bg-navy px-7 py-4">
@@ -375,15 +375,17 @@ function Index() {
                     height={80}
                     className="h-7 w-auto"
                   />
-                  {p.featured ? (
-                    <span className="rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground">
-                      {p.badge}
-                    </span>
-                  ) : (
-                    <span className="text-xs font-semibold uppercase tracking-wide text-navy-foreground/70">
-                      {p.badge}
-                    </span>
-                  )}
+                  <span
+                    className={
+                      p.featured
+                        ? "rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground"
+                        : p.highlight
+                          ? "rounded-full bg-sky-200 px-3 py-1 text-xs font-bold uppercase tracking-wide text-sky-900"
+                          : "rounded-full bg-slate-200 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-800"
+                    }
+                  >
+                    {p.badge}
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold">{p.name}</h3>
                 <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
