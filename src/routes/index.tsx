@@ -39,6 +39,7 @@ const packages = [
   {
     name: "STAR tag",
     price: "R129",
+    badge: "BASIC TRACKING",
     blurb: "Our most affordable option for hi-jacking and stolen vehicle recovery.",
     features: [
       "Stolen Vehicle Recovery Service",
@@ -52,6 +53,7 @@ const packages = [
   {
     name: "NETSTAR Plus",
     price: "R199",
+    badge: "Most popular",
     blurb: "Our essential tracking and recovery option with added safety.",
     features: [
       "Stolen Vehicle Recovery Service",
@@ -74,6 +76,7 @@ const packages = [
   {
     name: "NETSTAR Early Warning",
     price: "R239",
+    badge: "EXTRA PROTECTION",
     blurb:
       "Our most comprehensive vehicle tracking and recovery option with all-round protection for you and your family.",
     features: [
@@ -96,6 +99,7 @@ const packages = [
       "Tow-away Alert",
       "MyNetstar Auto-arm",
     ],
+    highlight: true,
   },
 ];
 
@@ -358,7 +362,9 @@ function Index() {
                 className={
                   p.featured
                     ? "brand-gradient overflow-hidden rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
-                    : "overflow-hidden rounded-2xl border border-border bg-card p-7"
+                    : p.highlight
+                      ? "overflow-hidden rounded-2xl border border-border bg-sky-50 p-7"
+                      : "overflow-hidden rounded-2xl border border-border bg-card p-7"
                 }
               >
                 <div className="-mx-7 -mt-7 mb-6 flex items-center justify-between gap-3 bg-navy px-7 py-4">
@@ -371,11 +377,11 @@ function Index() {
                   />
                   {p.featured ? (
                     <span className="rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground">
-                      Most popular
+                      {p.badge}
                     </span>
                   ) : (
                     <span className="text-xs font-semibold uppercase tracking-wide text-navy-foreground/70">
-                      Approved partner
+                      {p.badge}
                     </span>
                   )}
                 </div>
