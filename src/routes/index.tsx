@@ -375,15 +375,7 @@ function Index() {
                     height={80}
                     className="h-7 w-auto"
                   />
-                  <span
-                    className={
-                      p.featured
-                        ? "rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground"
-                        : p.highlight
-                          ? "rounded-full bg-sky-200 px-3 py-1 text-xs font-bold uppercase tracking-wide text-sky-900"
-                          : "rounded-full bg-slate-200 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-800"
-                    }
-                  >
+                  <span className="rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground">
                     {p.badge}
                   </span>
                 </div>
@@ -391,7 +383,7 @@ function Index() {
                 <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
                   {p.blurb}
                 </p>
-                <p className="mt-5 text-4xl font-extrabold">
+                <p className="mt-5 font-[Arial] text-4xl font-extrabold">
                   {p.price}
                   <span className="ml-1 text-base font-medium opacity-70">pm</span>
                 </p>
