@@ -274,9 +274,9 @@ function Index() {
           alt="Netstar branded recovery helicopter on a landing pad in South Africa"
           width={1600}
           height={1008}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-[center_60%] md:object-center"
         />
-        <div className="hero-overlay absolute inset-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/92 via-navy/75 to-navy/35 md:bg-gradient-to-r md:from-navy/95 md:via-navy/82 md:to-navy/25" />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
           <div className="max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-lime">
