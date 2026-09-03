@@ -377,9 +377,11 @@ function Index() {
                   />
                   <span
                     className={
-                      p.featured || p.highlight
-                        ? "rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground"
-                        : "rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy"
+                      p.highlight
+                        ? "rounded-full bg-green-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white"
+                        : p.featured
+                          ? "rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground"
+                          : "rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy"
                     }
                   >
                     {p.badge}
