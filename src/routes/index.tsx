@@ -16,20 +16,67 @@ import { submitLead } from "@/lib/leads.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Netstar Vehicle Tracking from R129pm | Get a Quote" },
+      { title: "Netstar Tracker from R129pm | GPS Tracker & Car Track SA" },
       {
         name: "description",
         content:
-          "Netstar vehicle tracking and stolen vehicle recovery in South Africa from R129 per month. Helicopter and ground recovery teams, 24/7. Request your free quote.",
+          "Get a Netstar tracker fitted from R129 per month. GPS tracker and car track packages with helicopter and ground stolen vehicle recovery, 24/7 in South Africa.",
       },
-      { property: "og:title", content: "Netstar Vehicle Tracking from R129pm" },
+      { name: "keywords", content: "Netstar, tracker, GPS tracker, car track, vehicle tracking South Africa" },
+      { property: "og:title", content: "Netstar Tracker from R129pm | GPS Tracker & Car Track" },
       {
         property: "og:description",
         content:
-          "Air and ground recovery teams protecting South African drivers. Get your free Netstar tracking quote in minutes.",
+          "Netstar GPS tracker packages from R129pm. Air and ground recovery teams protecting South African drivers. Get your free car track quote.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://getnetstar.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Netstar Tracker from R129pm | GPS Tracker & Car Track" },
+      {
+        name: "twitter:description",
+        content:
+          "Netstar GPS tracker packages from R129pm with 24/7 stolen vehicle recovery in South Africa.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "https://getnetstar.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "AutoRepair",
+              "@id": "https://getnetstar.lovable.app/#business",
+              name: "Get Netstar - Approved Netstar Partner",
+              description:
+                "Netstar GPS tracker fitment, car track and stolen vehicle recovery packages from R129 per month in South Africa.",
+              url: "https://getnetstar.lovable.app/",
+              telephone: "+27878216175",
+              email: "info@getnetstar.co.za",
+              areaServed: { "@type": "Country", name: "South Africa" },
+              address: { "@type": "PostalAddress", addressCountry: "ZA" },
+              priceRange: "R129 - R239 per month",
+            },
+            {
+              "@type": "Service",
+              name: "Netstar GPS Tracker & Stolen Vehicle Recovery",
+              serviceType: "Vehicle tracking and car track recovery",
+              provider: { "@id": "https://getnetstar.lovable.app/#business" },
+              areaServed: { "@type": "Country", name: "South Africa" },
+              offers: packages.map((p) => ({
+                "@type": "Offer",
+                name: `${p.name} vehicle tracker`,
+                price: p.price.replace("R", ""),
+                priceCurrency: "ZAR",
+                url: "https://getnetstar.lovable.app/#quote",
+                availability: "https://schema.org/InStock",
+              })),
+            },
+          ],
+        }),
+      },
     ],
   }),
   component: Index,
