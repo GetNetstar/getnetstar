@@ -329,14 +329,16 @@ function Index() {
         <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
           <div className="max-w-xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-lime">
-              Vehicle tracking &amp; recovery
+              Netstar GPS tracker &amp; car track recovery
             </p>
             <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] text-navy-foreground sm:text-5xl lg:text-6xl">
-              Air and ground teams that bring your car <span className="text-lime">back</span>.
+              Netstar tracker fitted from R129pm — air and ground teams bring your car{" "}
+              <span className="text-lime">back</span>.
             </h1>
             <p className="mt-5 text-lg text-navy-foreground/80">
-              South Africa&apos;s first vehicle tracking and recovery company. Helicopter units,
-              armed response and a 24/7 control room — from R129 per month.
+              South Africa&apos;s first vehicle tracking and recovery company. A Netstar GPS tracker
+              gives you live car track, helicopter units, armed response and a 24/7 control room —
+              from R129 per month.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button asChild size="lg" className="bg-lime text-lime-foreground hover:bg-lime/90">
