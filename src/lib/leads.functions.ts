@@ -13,8 +13,14 @@ const esc = (v: string) =>
   v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const SITE = "https://getnetstar.lovable.app";
-const NETSTAR_LOGO = `${SITE}/__l5e/assets-v1/8a8cbf31-964c-41f1-b0f8-52cb1aeb9eb1/netstar-logo.png`;
-const MOTORPRIME_LOGO = `${SITE}/__l5e/assets-v1/71232c56-8021-4b7a-9b5b-25db094ee4f1/motorprime-logo-white.png`;
+const NETSTAR_LOGO = `${SITE}/images/netstar-logo.png`;
+const MOTORPRIME_LOGO = `${SITE}/images/motorprime-logo-white.png`;
+
+const LEAD_RECIPIENTS = [
+  "info@motorprime.co.za",
+  "quote@getnetstar.co.za",
+  "info@getnetstar.co.za",
+];
 
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => leadSchema.parse(data))
@@ -72,7 +78,7 @@ export const submitLead = createServerFn({ method: "POST" })
       },
       body: JSON.stringify({
         from: "Netstar Quotes <leads@getnetstar.co.za>",
-        to: ["info@motorprime.co.za"],
+        to: LEAD_RECIPIENTS,
         ...(data.email ? { reply_to: data.email } : {}),
         subject: `New Netstar Quote Request: ${data.name} ${data.surname}`,
         html,
