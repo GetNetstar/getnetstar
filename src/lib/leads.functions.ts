@@ -14,7 +14,7 @@ const esc = (v: string) =>
 
 const SITE = "https://getnetstar.lovable.app";
 const NETSTAR_LOGO = `${SITE}/images/netstar-logo.png`;
-const MOTORPRIME_LOGO = `${SITE}/images/motorprime-logo-white.webp`;
+const MOTORPRIME_LOGO = `${SITE}/images/motorprime-logo-white.png`;
 
 const LEAD_RECIPIENTS = [
   "info@motorprime.co.za",
