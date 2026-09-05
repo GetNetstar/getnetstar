@@ -150,6 +150,34 @@ const packages = [
   },
 ];
 
+const faqs = [
+  {
+    question: "What is a Netstar GPS tracker?",
+    answer:
+      "A Netstar GPS tracker is a vehicle tracking device that uses satellite and cellular technology to show your car's live location. If your vehicle is stolen, Netstar's 24/7 control room can dispatch helicopter and ground recovery teams to recover it.",
+  },
+  {
+    question: "How much does a Netstar car track cost?",
+    answer:
+      "Netstar tracker packages start from R129 per month for the STAR tag. The NETSTAR Plus plan is R199 per month and the NETSTAR Early Warning plan is R239 per month, with no hidden fitment fees.",
+  },
+  {
+    question: "Does Netstar tracker work anywhere in South Africa?",
+    answer:
+      "Yes. Netstar's GPS tracker and recovery network covers South Africa nationwide, with helicopter response, ground units and approved fitment centres in major cities including Johannesburg, Pretoria, Cape Town, Durban, Port Elizabeth and Bloemfontein.",
+  },
+  {
+    question: "What happens when my car is stolen?",
+    answer:
+      "Report the theft to Netstar's emergency call centre. The control room tracks your vehicle in real time, dispatches the nearest recovery unit and coordinates with police and private response teams until your car is recovered.",
+  },
+  {
+    question: "Can I get a fitment certificate for insurance?",
+    answer:
+      "Yes. All Netstar tracker packages include an insurance-approved fitment certificate. This is required by most South African insurers when you fit a tracking device to your car.",
+  },
+];
+
 const stats = [
   { value: "90%+", label: "Recovery rate" },
   { value: "24/7", label: "Emergency call centre" },
