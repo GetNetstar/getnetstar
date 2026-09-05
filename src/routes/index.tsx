@@ -631,6 +631,27 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-16" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" className="text-3xl font-extrabold sm:text-4xl">
+          Netstar tracker FAQs
+        </h2>
+        <p className="mt-2 text-muted-foreground">
+          Common questions about GPS tracker fitment, car track pricing and stolen vehicle recovery.
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {faqs.map((f) => (
+            <details
+              key={f.question}
+              className="group rounded-2xl border border-border bg-card p-6"
+            >
+              <summary className="cursor-pointer list-none font-semibold text-card-foreground">
+                {f.question}
+              </summary>
+              <p className="mt-3 text-sm text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <section className="bg-navy py-16">
         <div className="mx-auto max-w-3xl px-5 text-center">
