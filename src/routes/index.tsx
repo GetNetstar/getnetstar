@@ -436,7 +436,7 @@ function Index() {
               Netstar GPS tracker &amp; car track recovery
             </p>
             <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] text-navy-foreground sm:text-5xl lg:text-6xl">
-              Netstar tracker fitted from R129pm — air and ground teams bring your car{" "}
+              Air and ground teams that bring your car{" "}
               <span className="text-lime">back</span>.
             </h1>
             <p className="mt-5 text-lg text-navy-foreground/80">
