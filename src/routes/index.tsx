@@ -47,6 +47,44 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@graph": [
             {
+              "@type": "Organization",
+              "@id": "https://getnetstar.lovable.app/#organization",
+              name: "Get Netstar - Approved Netstar Partner",
+              alternateName: "Motor Prime Netstar Sales Partner",
+              url: "https://getnetstar.lovable.app/",
+              logo: "https://getnetstar.lovable.app/images/netstar-logo.png",
+              description:
+                "Approved Netstar partner supplying GPS tracker and car track fitment, stolen vehicle recovery and fleet tracking across South Africa.",
+              sameAs: [
+                "https://www.netstar.co.za/",
+                "https://www.facebook.com/NetstarSA",
+                "https://www.linkedin.com/company/netstar/",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+27878216175",
+                email: "info@getnetstar.co.za",
+                contactType: "Sales",
+                areaServed: "ZA",
+                availableLanguage: ["English"],
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://getnetstar.lovable.app/#website",
+              url: "https://getnetstar.lovable.app/",
+              name: "Get Netstar",
+              publisher: { "@id": "https://getnetstar.lovable.app/#organization" },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://getnetstar.lovable.app/?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            },
+            {
               "@type": "AutoRepair",
               "@id": "https://getnetstar.lovable.app/#business",
               name: "Get Netstar - Approved Netstar Partner",
@@ -55,9 +93,15 @@ export const Route = createFileRoute("/")({
               url: "https://getnetstar.lovable.app/",
               telephone: "+27878216175",
               email: "info@getnetstar.co.za",
-              areaServed: { "@type": "Country", name: "South Africa" },
+              image: "https://getnetstar.lovable.app/images/netstar-heli-pad.jpg",
+              areaServed: {
+                "@type": "Country",
+                name: "South Africa",
+              },
               address: { "@type": "PostalAddress", addressCountry: "ZA" },
               priceRange: "R129 - R239 per month",
+              brand: { "@type": "Brand", name: "Netstar" },
+              isRelatedTo: { "@id": "https://getnetstar.lovable.app/#organization" },
             },
             {
               "@type": "Service",
@@ -65,13 +109,45 @@ export const Route = createFileRoute("/")({
               serviceType: "Vehicle tracking and car track recovery",
               provider: { "@id": "https://getnetstar.lovable.app/#business" },
               areaServed: { "@type": "Country", name: "South Africa" },
-              offers: packages.map((p) => ({
-                "@type": "Offer",
-                name: `${p.name} vehicle tracker`,
-                price: p.price.replace("R", ""),
-                priceCurrency: "ZAR",
-                url: "https://getnetstar.lovable.app/#quote",
-                availability: "https://schema.org/InStock",
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Netstar Tracker Packages",
+                itemListElement: packages.map((p, i) => ({
+                  "@type": "Offer",
+                  position: i + 1,
+                  name: `${p.name} vehicle tracker`,
+                  description: p.blurb,
+                  price: p.price.replace("R", ""),
+                  priceCurrency: "ZAR",
+                  url: "https://getnetstar.lovable.app/#quote",
+                  availability: "https://schema.org/InStock",
+                  seller: { "@id": "https://getnetstar.lovable.app/#business" },
+                })),
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://getnetstar.lovable.app/#breadcrumb",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://getnetstar.lovable.app/",
+                },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://getnetstar.lovable.app/#faq",
+              mainEntity: faqs.map((f, i) => ({
+                "@type": "Question",
+                position: i + 1,
+                name: f.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: f.answer,
+                },
               })),
             },
           ],
@@ -147,6 +223,34 @@ const packages = [
       "MyNetstar Auto-arm",
     ],
     highlight: true,
+  },
+];
+
+const faqs = [
+  {
+    question: "What is a Netstar GPS tracker?",
+    answer:
+      "A Netstar GPS tracker is a vehicle tracking device that uses satellite and cellular technology to show your car's live location. If your vehicle is stolen, Netstar's 24/7 control room can dispatch helicopter and ground recovery teams to recover it.",
+  },
+  {
+    question: "How much does a Netstar car track cost?",
+    answer:
+      "Netstar tracker packages start from R129 per month for the STAR tag. The NETSTAR Plus plan is R199 per month and the NETSTAR Early Warning plan is R239 per month, with no hidden fitment fees.",
+  },
+  {
+    question: "Does Netstar tracker work anywhere in South Africa?",
+    answer:
+      "Yes. Netstar's GPS tracker and recovery network covers South Africa nationwide, with helicopter response, ground units and approved fitment centres in major cities including Johannesburg, Pretoria, Cape Town, Durban, Port Elizabeth and Bloemfontein.",
+  },
+  {
+    question: "What happens when my car is stolen?",
+    answer:
+      "Report the theft to Netstar's emergency call centre. The control room tracks your vehicle in real time, dispatches the nearest recovery unit and coordinates with police and private response teams until your car is recovered.",
+  },
+  {
+    question: "Can I get a fitment certificate for insurance?",
+    answer:
+      "Yes. All Netstar tracker packages include an insurance-approved fitment certificate. This is required by most South African insurers when you fit a tracking device to your car.",
   },
 ];
 
@@ -298,7 +402,7 @@ function QuoteForm() {
 
 function Index() {
   return (
-    <div id="top" className="min-h-screen bg-background">
+    <main id="top" className="min-h-screen bg-background" aria-label="Netstar GPS tracker and car track recovery South Africa">
       <Toaster position="top-center" />
 
       <header className="bg-navy">
@@ -319,7 +423,7 @@ function Index() {
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heliAsset.url}
-            alt="Netstar branded recovery helicopter on a landing pad in South Africa"
+            alt="Netstar helicopter and ground team recovering a stolen car with GPS tracker support in South Africa"
             width={1600}
             height={1008}
             className="h-full w-full scale-125 object-cover object-[center_35%] md:scale-100 md:object-center"
@@ -370,7 +474,7 @@ function Index() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <img
             src={sceneAsset.url}
-            alt="Netstar helicopter and ground recovery team in action recovering a stolen vehicle in South Africa"
+            alt="Netstar GPS tracker recovery operation with helicopter tracking and ground crew responding to a stolen vehicle in South Africa"
             width={1600}
             height={1008}
             loading="lazy"
@@ -378,7 +482,7 @@ function Index() {
           />
           <div>
             <h2 className="text-3xl font-extrabold sm:text-4xl">
-              Recovery in the air, on the ground, in minutes
+              Netstar GPS tracker recovery in the air, on the ground, in minutes
             </h2>
             <p className="mt-4 text-muted-foreground">
               The moment your vehicle is reported stolen, our control room dispatches the closest
@@ -402,10 +506,48 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-muted/30 py-16">
+        <div className="mx-auto max-w-6xl px-5">
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Why choose a Netstar GPS tracker?</h2>
+          <p className="mt-3 max-w-3xl text-muted-foreground">
+            Netstar is South Africa&apos;s most recognised vehicle tracking and recovery brand. A
+            Netstar car track links your vehicle to a 24/7 control room, armed response and air
+            support — giving you the best chance of recovery if your car is stolen or hijacked.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Proven recovery rate",
+                body: "Netstar tracker technology and response teams recover more than 90% of stolen vehicles.",
+              },
+              {
+                title: "Live car track app",
+                body: "See your vehicle's location, trip history and driver behaviour on the MyNetstar app.",
+              },
+              {
+                title: "Insurance approved",
+                body: "Every GPS tracker package includes a fitment certificate accepted by South African insurers.",
+              },
+              {
+                title: "Nationwide coverage",
+                body: "Tracker support and fitment in Johannesburg, Pretoria, Cape Town, Durban and beyond.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-border bg-card p-6">
+                <h3 className="font-bold text-card-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-secondary py-16">
         <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Packages from R129 per month</h2>
-          <p className="mt-2 text-muted-foreground">Month-to-month options. No hidden fitment fees.</p>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Netstar tracker packages from R129 per month</h2>
+          <p className="mt-2 text-muted-foreground">
+            Month-to-month GPS tracker and car track options. No hidden fitment fees.
+          </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {packages.map((p) => (
               <div
@@ -491,6 +633,27 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-16" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" className="text-3xl font-extrabold sm:text-4xl">
+          Netstar tracker FAQs
+        </h2>
+        <p className="mt-2 text-muted-foreground">
+          Common questions about GPS tracker fitment, car track pricing and stolen vehicle recovery.
+        </p>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {faqs.map((f) => (
+            <details
+              key={f.question}
+              className="group rounded-2xl border border-border bg-card p-6"
+            >
+              <summary className="cursor-pointer list-none font-semibold text-card-foreground">
+                {f.question}
+              </summary>
+              <p className="mt-3 text-sm text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <section className="bg-navy py-16">
         <div className="mx-auto max-w-3xl px-5 text-center">
@@ -525,6 +688,6 @@ function Index() {
           </a>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }
