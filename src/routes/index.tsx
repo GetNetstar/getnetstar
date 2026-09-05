@@ -47,6 +47,44 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@graph": [
             {
+              "@type": "Organization",
+              "@id": "https://getnetstar.lovable.app/#organization",
+              name: "Get Netstar - Approved Netstar Partner",
+              alternateName: "Motor Prime Netstar Sales Partner",
+              url: "https://getnetstar.lovable.app/",
+              logo: "https://getnetstar.lovable.app/images/netstar-logo.png",
+              description:
+                "Approved Netstar partner supplying GPS tracker and car track fitment, stolen vehicle recovery and fleet tracking across South Africa.",
+              sameAs: [
+                "https://www.netstar.co.za/",
+                "https://www.facebook.com/NetstarSA",
+                "https://www.linkedin.com/company/netstar/",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+27878216175",
+                email: "info@getnetstar.co.za",
+                contactType: "Sales",
+                areaServed: "ZA",
+                availableLanguage: ["English"],
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://getnetstar.lovable.app/#website",
+              url: "https://getnetstar.lovable.app/",
+              name: "Get Netstar",
+              publisher: { "@id": "https://getnetstar.lovable.app/#organization" },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://getnetstar.lovable.app/?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            },
+            {
               "@type": "AutoRepair",
               "@id": "https://getnetstar.lovable.app/#business",
               name: "Get Netstar - Approved Netstar Partner",
@@ -55,9 +93,15 @@ export const Route = createFileRoute("/")({
               url: "https://getnetstar.lovable.app/",
               telephone: "+27878216175",
               email: "info@getnetstar.co.za",
-              areaServed: { "@type": "Country", name: "South Africa" },
+              image: "https://getnetstar.lovable.app/images/netstar-heli-pad.jpg",
+              areaServed: {
+                "@type": "Country",
+                name: "South Africa",
+              },
               address: { "@type": "PostalAddress", addressCountry: "ZA" },
               priceRange: "R129 - R239 per month",
+              brand: { "@type": "Brand", name: "Netstar" },
+              isRelatedTo: { "@id": "https://getnetstar.lovable.app/#organization" },
             },
             {
               "@type": "Service",
@@ -65,13 +109,45 @@ export const Route = createFileRoute("/")({
               serviceType: "Vehicle tracking and car track recovery",
               provider: { "@id": "https://getnetstar.lovable.app/#business" },
               areaServed: { "@type": "Country", name: "South Africa" },
-              offers: packages.map((p) => ({
-                "@type": "Offer",
-                name: `${p.name} vehicle tracker`,
-                price: p.price.replace("R", ""),
-                priceCurrency: "ZAR",
-                url: "https://getnetstar.lovable.app/#quote",
-                availability: "https://schema.org/InStock",
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Netstar Tracker Packages",
+                itemListElement: packages.map((p, i) => ({
+                  "@type": "Offer",
+                  position: i + 1,
+                  name: `${p.name} vehicle tracker`,
+                  description: p.blurb,
+                  price: p.price.replace("R", ""),
+                  priceCurrency: "ZAR",
+                  url: "https://getnetstar.lovable.app/#quote",
+                  availability: "https://schema.org/InStock",
+                  seller: { "@id": "https://getnetstar.lovable.app/#business" },
+                })),
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://getnetstar.lovable.app/#breadcrumb",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://getnetstar.lovable.app/",
+                },
+              ],
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://getnetstar.lovable.app/#faq",
+              mainEntity: faqs.map((f, i) => ({
+                "@type": "Question",
+                position: i + 1,
+                name: f.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: f.answer,
+                },
               })),
             },
           ],
