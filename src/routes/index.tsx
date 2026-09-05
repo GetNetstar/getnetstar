@@ -298,7 +298,7 @@ function QuoteForm() {
 
 function Index() {
   return (
-    <div id="top" className="min-h-screen bg-background">
+    <main id="top" className="min-h-screen bg-background" aria-label="Netstar GPS tracker and car track recovery South Africa">
       <Toaster position="top-center" />
 
       <header className="bg-navy">
@@ -319,7 +319,7 @@ function Index() {
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heliAsset.url}
-            alt="Netstar branded recovery helicopter on a landing pad in South Africa"
+            alt="Netstar helicopter and ground team recovering a stolen car with GPS tracker support in South Africa"
             width={1600}
             height={1008}
             className="h-full w-full scale-125 object-cover object-[center_35%] md:scale-100 md:object-center"
@@ -370,7 +370,7 @@ function Index() {
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <img
             src={sceneAsset.url}
-            alt="Netstar helicopter and ground recovery team in action recovering a stolen vehicle in South Africa"
+            alt="Netstar GPS tracker recovery operation with helicopter tracking and ground crew responding to a stolen vehicle in South Africa"
             width={1600}
             height={1008}
             loading="lazy"
