@@ -506,6 +506,42 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-muted/30 py-16">
+        <div className="mx-auto max-w-6xl px-5">
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Why choose a Netstar GPS tracker?</h2>
+          <p className="mt-3 max-w-3xl text-muted-foreground">
+            Netstar is South Africa&apos;s most recognised vehicle tracking and recovery brand. A
+            Netstar car track links your vehicle to a 24/7 control room, armed response and air
+            support — giving you the best chance of recovery if your car is stolen or hijacked.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Proven recovery rate",
+                body: "Netstar tracker technology and response teams recover more than 90% of stolen vehicles.",
+              },
+              {
+                title: "Live car track app",
+                body: "See your vehicle's location, trip history and driver behaviour on the MyNetstar app.",
+              },
+              {
+                title: "Insurance approved",
+                body: "Every GPS tracker package includes a fitment certificate accepted by South African insurers.",
+              },
+              {
+                title: "Nationwide coverage",
+                body: "Tracker support and fitment in Johannesburg, Pretoria, Cape Town, Durban and beyond.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-border bg-card p-6">
+                <h3 className="font-bold text-card-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-secondary py-16">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-3xl font-extrabold sm:text-4xl">Packages from R129 per month</h2>
