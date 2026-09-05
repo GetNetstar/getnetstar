@@ -482,7 +482,7 @@ function Index() {
           />
           <div>
             <h2 className="text-3xl font-extrabold sm:text-4xl">
-              Recovery in the air, on the ground, in minutes
+              Netstar GPS tracker recovery in the air, on the ground, in minutes
             </h2>
             <p className="mt-4 text-muted-foreground">
               The moment your vehicle is reported stolen, our control room dispatches the closest
@@ -544,8 +544,10 @@ function Index() {
 
       <section className="bg-secondary py-16">
         <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Packages from R129 per month</h2>
-          <p className="mt-2 text-muted-foreground">Month-to-month options. No hidden fitment fees.</p>
+          <h2 className="text-3xl font-extrabold sm:text-4xl">Netstar tracker packages from R129 per month</h2>
+          <p className="mt-2 text-muted-foreground">
+            Month-to-month GPS tracker and car track options. No hidden fitment fees.
+          </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {packages.map((p) => (
               <div
