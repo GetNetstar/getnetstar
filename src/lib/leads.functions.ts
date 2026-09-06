@@ -25,9 +25,8 @@ const LEAD_RECIPIENTS = [
 export const submitLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => leadSchema.parse(data))
   .handler(async ({ data }) => {
-    const lovableKey = process.env["LOVABLE_API_KEY"];
     const resendKey = process.env["RESEND_API_KEY"];
-    if (!lovableKey || !resendKey) {
+    if (!resendKey) {
       throw new Error("Email service is not configured.");
     }
 
@@ -69,12 +68,11 @@ export const submitLead = createServerFn({ method: "POST" })
 </td></tr></table>
 </body></html>`;
 
-    const response = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
+    const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${lovableKey}`,
-        "X-Connection-Api-Key": resendKey,
+        Authorization: `Bearer ${resendKey}`,
       },
       body: JSON.stringify({
         from: "Netstar Quotes <leads@getnetstar.co.za>",
