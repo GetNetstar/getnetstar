@@ -7,10 +7,11 @@ import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-const heliAsset = { url: "/images/netstar-heli-pad.jpg" };
-const sceneAsset = { url: "/images/netstar-recovery-scene.webp" };
+const heliAsset = { url: "/images/motorprime-hero.jpg" };
+const sceneAsset = { url: "/images/motorprime-recovery.jpg" };
 const logoAsset = { url: "/images/netstar-logo.png" };
-const motorprimeAsset = { url: "/images/motorprime-logo-white.webp" };
+const motorprimeAsset = { url: "/images/motorprime-logo.png" };
+const motorprimeWhiteAsset = { url: "/images/motorprime-logo-white.png" };
 import { submitLead } from "@/lib/leads.functions";
 
 export const Route = createFileRoute("/")({
@@ -93,7 +94,7 @@ export const Route = createFileRoute("/")({
               url: "https://getnetstar.lovable.app/",
               telephone: "+27878216175",
               email: "info@getnetstar.co.za",
-              image: "https://getnetstar.lovable.app/images/netstar-heli-pad.jpg",
+              image: "https://getnetstar.lovable.app/images/motorprime-hero.jpg",
               areaServed: {
                 "@type": "Country",
                 name: "South Africa",
@@ -290,14 +291,17 @@ const testimonials = [
 
 function Logo() {
   return (
-    <a href="#top" className="inline-block leading-none">
+    <a href="#top" className="inline-flex flex-col leading-none">
       <img
-        src={logoAsset.url}
-        alt="Netstar vehicle tracking and recovery logo"
-        width={300}
-        height={120}
-        className="h-11 w-auto"
+        src={motorprimeAsset.url}
+        alt="Motor Prime vehicle tracking logo"
+        width={480}
+        height={160}
+        className="h-10 w-auto"
       />
+      <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-steel/80">
+        Authorised Netstar Reseller
+      </span>
     </a>
   );
 }
@@ -309,7 +313,7 @@ function QuoteForm() {
   const mutation = useMutation({
     mutationFn: (data: typeof form) => sendLead({ data }),
     onSuccess: () => {
-      toast.success("Thank you! A Netstar consultant will call you shortly.");
+      toast.success("Thank you! A Motor Prime consultant will call you shortly.");
       setForm({ name: "", surname: "", cell: "", email: "", vehicle: "" });
     },
     onError: (error: Error) => toast.error(error.message || "Something went wrong. Please try again."),
@@ -326,11 +330,12 @@ function QuoteForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-brand)] sm:p-8"
+      className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-2xl sm:p-8"
     >
-      <h2 className="text-2xl font-bold text-card-foreground">Get your free quote</h2>
+      <div className="pointer-events-none absolute -mr-16 -mt-16 h-32 w-32 rounded-bl-full bg-gold/10" />
+      <h2 className="font-display text-2xl font-bold text-card-foreground">Get your free quote</h2>
       <p className="mt-1 text-sm text-muted-foreground">
-        Packages from R129 per month. We call you back the same day.
+        Tell us a bit about yourself and your vehicle. We call you back the same day.
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -381,11 +386,11 @@ function QuoteForm() {
       </div>
 
       <Button type="submit" size="lg" className="mt-6 w-full text-base" disabled={mutation.isPending}>
-        {mutation.isPending ? "Sending..." : "Request my quote"}
+        {mutation.isPending ? "Sending..." : "Request quote now"}
       </Button>
       {mutation.isSuccess && (
-        <p role="status" className="mt-3 rounded-lg bg-primary/10 px-3 py-2 text-sm font-medium text-primary">
-          Thank you! A Netstar consultant will call you shortly.
+        <p role="status" className="mt-3 rounded-lg bg-primary/10 px-3 py-2 text-sm font-medium text-foreground">
+          Thank you! A Motor Prime consultant will call you shortly.
         </p>
       )}
       {mutation.isError && (
@@ -393,8 +398,8 @@ function QuoteForm() {
           {mutation.error?.message || "Something went wrong. Please call 087 821 6175."}
         </p>
       )}
-      <p className="mt-3 text-xs text-muted-foreground">
-        By submitting you agree to be contacted about Netstar tracking products.
+      <p className="mt-3 text-center text-xs text-muted-foreground">
+        By clicking you agree to be contacted by Motor Prime regarding Netstar tracking products.
       </p>
     </form>
   );
@@ -402,55 +407,71 @@ function QuoteForm() {
 
 function Index() {
   return (
-    <main id="top" className="min-h-screen bg-background" aria-label="Netstar GPS tracker and car track recovery South Africa">
+    <main id="top" className="min-h-screen bg-background" aria-label="Motor Prime Netstar GPS tracker and car track recovery South Africa">
       <Toaster position="top-center" />
 
-      <header className="bg-navy">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+      <header className="border-b border-border bg-white">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4">
           <Logo />
-          <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-navy-foreground/80 sm:inline">
-              Sales 087 821 6175
-            </span>
-            <Button asChild variant="secondary" className="bg-lime text-lime-foreground hover:bg-lime/90">
+          <div className="flex items-center gap-6">
+            <div className="hidden text-right md:block">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                Sales enquiry
+              </p>
+              <a href="tel:0878216175" className="text-lg font-bold text-foreground">
+                087 821 6175
+              </a>
+            </div>
+            <Button asChild className="rounded-full">
               <a href="#quote">Get a quote</a>
             </Button>
           </div>
         </div>
       </header>
 
-      <section className="relative isolate overflow-hidden bg-navy">
+      <section className="relative isolate overflow-hidden bg-steel">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heliAsset.url}
-            alt="Netstar helicopter and ground team recovering a stolen car with GPS tracker support in South Africa"
-            width={1600}
-            height={1008}
-            className="h-full w-full scale-125 object-cover object-[center_35%] md:scale-100 md:object-center"
+            alt="Helicopter with searchlight tracking a car on a South African highway at dusk"
+            width={1920}
+            height={1088}
+            className="h-full w-full object-cover object-[center_40%]"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/75 via-navy/40 to-navy/10 md:bg-gradient-to-r md:from-navy/95 md:via-navy/82 md:to-navy/25" />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-16 lg:grid-cols-[1.05fr_.95fr] lg:py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink/40 md:bg-gradient-to-r md:from-ink/95 md:via-ink/85 md:to-ink/25" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
           <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-lime">
-              Netstar GPS tracker &amp; car track recovery
-            </p>
-            <h1 className="mt-4 text-4xl font-extrabold leading-[1.05] text-navy-foreground sm:text-5xl lg:text-6xl">
-              Air and ground teams that bring your car{" "}
-              <span className="text-lime">back</span>.
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 backdrop-blur-md">
+              <img
+                src={logoAsset.url}
+                alt="Netstar"
+                width={160}
+                height={60}
+                className="h-5 w-auto"
+              />
+              <span className="h-3 w-px bg-white/30" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-white">
+                Official Partner
+              </span>
+            </div>
+            <h1 className="font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+              Air and ground teams to{" "}
+              <span className="text-gold">protect your ride.</span>
             </h1>
-            <p className="mt-5 text-lg text-navy-foreground/80">
-              South Africa&apos;s first vehicle tracking and recovery company. A Netstar GPS tracker
-              gives you live car track, helicopter units, armed response and a 24/7 control room —
-              from R129 per month.
+            <p className="mt-6 max-w-lg text-lg text-gray-200 sm:text-xl">
+              South Africa&apos;s most trusted vehicle tracking and recovery. Motor Prime brings you
+              Netstar&apos;s 24/7 recovery services from just{" "}
+              <span className="font-bold text-white">R129 per month.</span>
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button asChild size="lg" className="bg-lime text-lime-foreground hover:bg-lime/90">
-                <a href="#quote">Get my quote from R129pm</a>
+              <Button asChild size="lg" className="uppercase tracking-widest">
+                <a href="#quote">Secure my vehicle</a>
               </Button>
-              <a href="tel:0878216175" className="text-sm font-semibold text-navy-foreground underline-offset-4 hover:underline">
-                Or call 087 821 6175
-              </a>
+              <div className="flex items-center gap-3 rounded-lg border border-white/20 px-6 py-4 font-medium text-white">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+                Active recovery teams online
+              </div>
             </div>
           </div>
           <div id="quote" className="scroll-mt-20">
@@ -459,45 +480,55 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-secondary">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-5 py-10 md:grid-cols-4">
-          {stats.map((s) => (
+      <section className="border-b border-border bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-5 py-12 text-center md:grid-cols-4">
+          {stats.map((s, i) => (
             <div key={s.label}>
-              <p className="text-3xl font-extrabold text-primary">{s.value}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+              <p className={`font-display text-4xl font-bold ${i === 0 ? "text-gold" : "text-steel"}`}>
+                {s.value}
+              </p>
+              <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                {s.label}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <img
-            src={sceneAsset.url}
-            alt="Netstar GPS tracker recovery operation with helicopter tracking and ground crew responding to a stolen vehicle in South Africa"
-            width={1600}
-            height={1008}
-            loading="lazy"
-            className="w-full rounded-2xl object-cover"
-          />
+      <section className="mx-auto max-w-7xl px-5 py-20">
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+          <div className="relative">
+            <img
+              src={sceneAsset.url}
+              alt="Helicopter and ground response team recovering a stolen vehicle in South Africa at dusk"
+              width={1600}
+              height={900}
+              loading="lazy"
+              className="relative z-10 aspect-square w-full rounded-3xl object-cover shadow-2xl"
+            />
+            <div className="absolute -bottom-6 -right-6 z-0 h-full w-full rounded-3xl border-4 border-gold" />
+          </div>
           <div>
-            <h2 className="text-3xl font-extrabold sm:text-4xl">
-              Netstar GPS tracker recovery in the air, on the ground, in minutes
+            <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+              Netstar GPS recovery in the air, on the ground,{" "}
+              <span className="bg-ink px-2 text-gold">in minutes.</span>
             </h2>
-            <p className="mt-4 text-muted-foreground">
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
               The moment your vehicle is reported stolen, our control room dispatches the closest
-              response unit. Helicopters track from above while ground teams close in on the ground —
-              the combination behind a 90%+ recovery rate.
+              response unit. Helicopters track from above while ground teams close in — the
+              combination behind a 90%+ recovery rate.
             </p>
-            <ul className="mt-6 space-y-3 text-sm">
+            <ul className="mt-8 space-y-5 font-bold">
               {[
                 "Live tracking from the Netstar app",
                 "Nationwide helicopter and ground response",
                 "Tow-away, jamming and tamper alerts",
                 "Insurance-approved fitment at your home or office",
               ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                <li key={item} className="flex items-center gap-4">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-xs font-black text-ink">
+                    ✓
+                  </span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -506,9 +537,9 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-muted/30 py-16">
-        <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Why choose a Netstar GPS tracker?</h2>
+      <section className="bg-muted/30 py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Why choose a Netstar GPS tracker?</h2>
           <p className="mt-3 max-w-3xl text-muted-foreground">
             Netstar is South Africa&apos;s most recognised vehicle tracking and recovery brand. A
             Netstar car track links your vehicle to a 24/7 control room, armed response and air
@@ -542,11 +573,12 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-secondary py-16">
-        <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-3xl font-extrabold sm:text-4xl">Netstar tracker packages from R129 per month</h2>
+      <section className="bg-secondary py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Netstar tracker packages from R129 per month</h2>
           <p className="mt-2 text-muted-foreground">
-            Month-to-month GPS tracker and car track options. No hidden fitment fees.
+            Supplied and fitted by Motor Prime. Month-to-month GPS tracker and car track options. No
+            hidden fitment fees.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {packages.map((p) => (
@@ -554,73 +586,62 @@ function Index() {
                 key={p.name}
                 className={
                   p.featured
-                    ? "brand-gradient overflow-hidden rounded-2xl p-7 text-primary-foreground shadow-[var(--shadow-brand)]"
-                    : p.highlight
-                      ? "overflow-hidden rounded-2xl border border-border bg-sky-100 p-7"
-                      : "overflow-hidden rounded-2xl border border-border bg-slate-50 p-7"
+                    ? "overflow-hidden rounded-2xl border-2 border-gold bg-card shadow-[var(--shadow-brand)]"
+                    : "overflow-hidden rounded-2xl border border-border bg-card"
                 }
               >
-                <div className="-mx-7 -mt-7 mb-6 flex items-center justify-between gap-3 bg-navy px-7 py-4">
+                <div className="-mt-px flex items-center justify-between gap-3 bg-ink px-7 py-4">
                   <img
                     src={logoAsset.url}
                     alt="Netstar"
                     width={200}
                     height={80}
-                    className="h-7 w-auto"
+                    className="h-6 w-auto"
                   />
                   <span
                     className={
-                      p.highlight
-                        ? "rounded-full bg-green-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white"
-                        : p.featured
-                          ? "rounded-full bg-lime px-3 py-1 text-xs font-bold uppercase tracking-wide text-lime-foreground"
-                          : "rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy"
+                      p.featured || p.highlight
+                        ? "rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-ink"
+                        : "rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white"
                     }
                   >
                     {p.badge}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold">{p.name}</h3>
-                <p className={p.featured ? "mt-1 text-sm text-primary-foreground/80" : "mt-1 text-sm text-muted-foreground"}>
-                  {p.blurb}
-                </p>
-                <p className="mt-5 font-[Arial] text-4xl font-extrabold">
-                  {p.price}
-                  <span className="ml-1 text-base font-medium opacity-70">pm</span>
-                </p>
-                <ul className="mt-5 space-y-2 text-sm">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex gap-2">
-                      <span className={p.featured ? "text-lime" : "text-primary"}>✓</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  asChild
-                  className={
-                    p.featured
-                      ? "mt-7 w-full bg-lime text-lime-foreground hover:bg-lime/90"
-                      : "mt-7 w-full"
-                  }
-                >
-                  <a href="#quote">Get this quote</a>
-                </Button>
+                <div className="p-7">
+                  <h3 className="font-display text-xl font-bold">{p.name}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{p.blurb}</p>
+                  <p className="mt-5 font-display text-4xl font-bold">
+                    {p.price}
+                    <span className="ml-1 text-base font-medium opacity-70">pm</span>
+                  </p>
+                  <ul className="mt-5 space-y-2 text-sm">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex gap-2">
+                        <span className="font-bold text-gold">✓</span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild className="mt-7 w-full">
+                    <a href="#quote">Get this quote</a>
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16">
-        <h2 className="text-3xl font-extrabold sm:text-4xl">What our clients say</h2>
+      <section className="mx-auto max-w-7xl px-5 py-20">
+        <h2 className="font-display text-3xl font-bold sm:text-4xl">What our clients say</h2>
         <p className="mt-2 text-muted-foreground">
           Trusted by South Africa&apos;s biggest fleets and families alike.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {testimonials.map((t) => (
             <figure key={t.name} className="rounded-2xl border border-border bg-card p-7">
-              <span className="text-4xl font-extrabold leading-none text-primary">&ldquo;</span>
+              <span className="font-display text-4xl font-bold leading-none text-gold">&ldquo;</span>
               <blockquote className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {t.quote}
               </blockquote>
@@ -633,8 +654,8 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-16" aria-labelledby="faq-heading">
-        <h2 id="faq-heading" className="text-3xl font-extrabold sm:text-4xl">
+      <section className="mx-auto max-w-7xl px-5 py-20" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" className="font-display text-3xl font-bold sm:text-4xl">
           Netstar tracker FAQs
         </h2>
         <p className="mt-2 text-muted-foreground">
@@ -655,37 +676,43 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-navy py-16">
+      <section className="bg-ink py-20">
         <div className="mx-auto max-w-3xl px-5 text-center">
-          <h2 className="text-3xl font-extrabold text-navy-foreground sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold text-ink-foreground sm:text-4xl">
             Protect your vehicle today
           </h2>
-          <p className="mt-3 text-navy-foreground/80">
-            Fill in the form and a consultant will call you back with your tailored quote.
+          <p className="mt-3 text-ink-foreground/70">
+            Fill in the form and a Motor Prime consultant will call you back with your tailored
+            Netstar quote.
           </p>
-          <Button asChild size="lg" className="mt-7 bg-lime text-lime-foreground hover:bg-lime/90">
+          <Button asChild size="lg" className="mt-7">
             <a href="#quote">Request my quote</a>
           </Button>
         </div>
       </section>
 
-      <footer className="bg-navy py-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 border-t border-navy-foreground/15 px-5 pt-8 text-sm text-navy-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-6">
-            <div className="flex flex-col items-start gap-1">
-              <span className="font-medium text-navy-foreground/80">An Approved Netstar Partner</span>
-              <img
-                src={motorprimeAsset.url}
-                alt="Motor Prime logo"
-                width={120}
-                height={40}
-                className="h-8 w-auto"
-              />
-            </div>
+      <footer className="bg-ink py-10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-t border-ink-foreground/15 px-5 pt-8 text-sm text-ink-foreground/60 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col items-start gap-2">
+            <img
+              src={motorprimeWhiteAsset.url}
+              alt="Motor Prime logo"
+              width={480}
+              height={160}
+              className="h-9 w-auto"
+            />
+            <span className="text-xs uppercase tracking-[0.18em] text-ink-foreground/70">
+              Authorised Netstar Reseller
+            </span>
           </div>
-          <a href="mailto:info@getnetstar.co.za" className="hover:text-navy-foreground">
-            info@getnetstar.co.za
-          </a>
+          <div className="flex flex-col items-start gap-1 sm:items-end">
+            <a href="mailto:info@getnetstar.co.za" className="hover:text-ink-foreground">
+              info@getnetstar.co.za
+            </a>
+            <a href="tel:0878216175" className="hover:text-ink-foreground">
+              087 821 6175
+            </a>
+          </div>
         </div>
       </footer>
 
