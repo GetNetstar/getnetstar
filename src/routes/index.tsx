@@ -501,8 +501,8 @@ function Index() {
             <img
               src={sceneAsset.url}
               alt="Helicopter and ground response team recovering a stolen vehicle in South Africa at dusk"
-              width={1600}
-              height={900}
+              width={1233}
+              height={1233}
               loading="lazy"
               className="relative z-10 aspect-square w-full rounded-3xl object-cover shadow-2xl"
             />
