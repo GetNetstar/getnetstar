@@ -300,7 +300,7 @@ function Logo() {
         className="h-10 w-auto"
       />
       <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-steel/80">
-        Authorised Netstar Reseller
+        An Authorised Netstar Broker
       </span>
     </a>
   );
@@ -702,7 +702,7 @@ function Index() {
               className="h-9 w-auto"
             />
             <span className="text-xs uppercase tracking-[0.18em] text-ink-foreground/70">
-              Authorised Netstar Reseller
+              An Authorised Netstar Broker
             </span>
           </div>
           <div className="flex flex-col items-start gap-1 sm:items-end">
