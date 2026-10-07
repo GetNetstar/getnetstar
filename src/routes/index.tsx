@@ -7,11 +7,11 @@ import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-const heliAsset = { url: "/images/motorprime-hero.jpg" };
+const heliAsset = { url: "/images/netstar-recovery-team.jpg" };
 const sceneAsset = { url: "/images/motorprime-recovery.jpg" };
 const logoAsset = { url: "/images/netstar-logo.png" };
-const motorprimeAsset = { url: "/images/motorprime-logo.png" };
-const motorprimeWhiteAsset = { url: "/images/motorprime-logo-white.png" };
+const motorprimeAsset = { url: "/images/motorprime-logo.webp" };
+const motorprimeWhiteAsset = { url: "/images/motorprime-logo-white.webp" };
 import { submitLead } from "@/lib/leads.functions";
 
 export const Route = createFileRoute("/")({
