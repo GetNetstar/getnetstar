@@ -58,11 +58,11 @@ export const submitLead = createServerFn({ method: "POST" })
     <h1 style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#1a1c1e">New Netstar Quote Request</h1>
     <p style="margin:0 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#54595f">${esc(data.name)} ${esc(data.surname)} requested a Netstar quote via Motor Prime.</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e6e8ec;border-radius:10px;border-collapse:separate">${tableRows}</table>
-    <p style="margin:22px 0 0"><a href="tel:${esc(data.cell.replace(/[^\d+]/g, ""))}" style="display:inline-block;background:#8ac800;color:#0b1533;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:8px">Call ${esc(data.name)}</a></p>
+    <p style="margin:22px 0 0"><a href="tel:${esc(data.cell.replace(/[^\d+]/g, ""))}" style="display:inline-block;background:#fdc70d;color:#1a1c1e;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:8px">Call ${esc(data.name)}</a></p>
   </td></tr>
-  <tr><td style="background:#0b1533;padding:24px 28px" align="center">
-    <img src="${MOTORPRIME_LOGO}" alt="Motor Prime" width="200" style="display:block;border:0;height:auto;margin:0 auto 10px" />
-    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffffff;letter-spacing:.04em">An Approved Netstar Partner</p>
+  <tr><td style="background:#1a1c1e;padding:24px 28px" align="center">
+    <img src="${NETSTAR_LOGO}" alt="Netstar" width="170" style="display:block;border:0;height:auto;margin:0 auto 10px" />
+    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffffff;letter-spacing:.04em">Supplied and fitted by Motor Prime &mdash; Authorised Netstar Reseller</p>
   </td></tr>
 </table>
 </td></tr></table>
