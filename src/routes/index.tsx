@@ -63,7 +63,7 @@ export const Route = createFileRoute("/")({
               ],
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+27878216175",
+                telephone: "+27108222855",
                 email: "info@getnetstar.co.za",
                 contactType: "Sales",
                 areaServed: "ZA",
@@ -90,9 +90,9 @@ export const Route = createFileRoute("/")({
               "@id": "https://getnetstar.lovable.app/#business",
               name: "Get Netstar - Approved Netstar Partner",
               description:
-                "Netstar GPS tracker fitment, car track and stolen vehicle recovery packages from R129 per month in South Africa.",
+                "Netstar GPS tracker fitment, car track and stolen vehicle recovery packages from R89 per month in South Africa.",
               url: "https://getnetstar.lovable.app/",
-              telephone: "+27878216175",
+              telephone: "+27108222855",
               email: "info@getnetstar.co.za",
               image: "https://getnetstar.lovable.app/images/motorprime-hero.jpg",
               areaServed: {
@@ -100,7 +100,7 @@ export const Route = createFileRoute("/")({
                 name: "South Africa",
               },
               address: { "@type": "PostalAddress", addressCountry: "ZA" },
-              priceRange: "R129 - R239 per month",
+              priceRange: "R89 - R199 per month",
               brand: { "@type": "Brand", name: "Netstar" },
               isRelatedTo: { "@id": "https://getnetstar.lovable.app/#organization" },
             },
@@ -162,7 +162,7 @@ export const Route = createFileRoute("/")({
 const packages = [
   {
     name: "STAR tag",
-    price: "R129",
+    price: "R89",
     badge: "BASIC TRACKING",
     blurb: "Our most affordable option for hi-jacking and stolen vehicle recovery.",
     features: [
@@ -176,7 +176,7 @@ const packages = [
   },
   {
     name: "NETSTAR Plus",
-    price: "R199",
+    price: "R169",
     badge: "Most popular",
     blurb: "Our essential tracking and recovery option with added safety.",
     features: [
@@ -199,7 +199,7 @@ const packages = [
   },
   {
     name: "NETSTAR Early Warning",
-    price: "R239",
+    price: "R199",
     badge: "EXTRA PROTECTION",
     blurb:
       "Our most comprehensive vehicle tracking and recovery option with all-round protection for you and your family.",
@@ -236,7 +236,7 @@ const faqs = [
   {
     question: "How much does a Netstar car track cost?",
     answer:
-      "Netstar tracker packages start from R129 per month for the STAR tag. The NETSTAR Plus plan is R199 per month and the NETSTAR Early Warning plan is R239 per month, with no hidden fitment fees.",
+      "Netstar tracker packages start from R89 per month for the STAR tag. The NETSTAR Plus plan starts from R169 per month and the NETSTAR Early Warning plan from R199 per month, on a 36-month rental contract with free installation and no upfront payment.",
   },
   {
     question: "Does Netstar tracker work anywhere in South Africa?",
@@ -395,7 +395,7 @@ function QuoteForm() {
       )}
       {mutation.isError && (
         <p role="alert" className="mt-3 rounded-lg bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
-          {mutation.error?.message || "Something went wrong. Please call 087 821 6175."}
+          {mutation.error?.message || "Something went wrong. Please call 010 822 2855."}
         </p>
       )}
       <p className="mt-3 text-center text-xs text-muted-foreground">
@@ -418,8 +418,8 @@ function Index() {
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 Sales enquiry
               </p>
-              <a href="tel:0878216175" className="text-lg font-bold text-foreground">
-                087 821 6175
+              <a href="tel:0108222855" className="text-lg font-bold text-foreground">
+                010 822 2855
               </a>
             </div>
             <Button asChild className="rounded-full">
@@ -456,8 +456,8 @@ function Index() {
               </span>
             </div>
             <h1 className="font-display text-4xl font-bold leading-[1.1] text-white sm:text-5xl lg:text-6xl">
-              Air and ground teams to{" "}
-              <span className="text-gold">protect your ride.</span>
+              Air And Ground Teams That{" "}
+              <span className="text-gold">Bring Your Car Back</span>
             </h1>
             <p className="mt-6 max-w-lg text-lg text-gray-200 sm:text-xl">
               South Africa&apos;s most trusted vehicle tracking and recovery. Motor Prime brings you
@@ -575,10 +575,10 @@ function Index() {
 
       <section className="bg-secondary py-20">
         <div className="mx-auto max-w-7xl px-5">
-          <h2 className="font-display text-3xl font-bold sm:text-4xl">Netstar tracker packages from R129 per month</h2>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Netstar tracker packages from R89 per month</h2>
           <p className="mt-2 text-muted-foreground">
-            Supplied and fitted by Motor Prime. Month-to-month GPS tracker and car track options. No
-            hidden fitment fees.
+            Supplied and fitted by Motor Prime. 36-month rental contract with free installation —
+            no upfront payment.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {packages.map((p) => (
@@ -611,7 +611,8 @@ function Index() {
                 <div className="p-7">
                   <h3 className="font-display text-xl font-bold">{p.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.blurb}</p>
-                  <p className="mt-5 font-display text-4xl font-bold">
+                  <p className="mt-5 font-display text-4xl font-extrabold">
+                    <span className="mr-1 text-base font-medium opacity-70">from</span>
                     {p.price}
                     <span className="ml-1 text-base font-medium opacity-70">pm</span>
                   </p>
@@ -709,8 +710,8 @@ function Index() {
             <a href="mailto:info@getnetstar.co.za" className="hover:text-ink-foreground">
               info@getnetstar.co.za
             </a>
-            <a href="tel:0878216175" className="hover:text-ink-foreground">
-              087 821 6175
+            <a href="tel:0108222855" className="hover:text-ink-foreground">
+              010 822 2855
             </a>
           </div>
         </div>
