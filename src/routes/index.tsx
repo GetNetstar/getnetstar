@@ -295,9 +295,9 @@ function Logo() {
       <img
         src={motorprimeAsset.url}
         alt="Motor Prime vehicle tracking logo"
-        className="h-12 w-auto object-contain"
+        className="h-8 w-auto object-contain"
       />
-      <span className="mt-1.5 text-[8.5px] font-bold uppercase tracking-[0.24em] text-steel/80">
+      <span className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.28em] text-steel/80">
         An Authorised Netstar Broker
       </span>
     </a>
