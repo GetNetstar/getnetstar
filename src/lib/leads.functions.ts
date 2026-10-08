@@ -62,7 +62,7 @@ export const submitLead = createServerFn({ method: "POST" })
   </td></tr>
   <tr><td style="background:#1a1c1e;padding:24px 28px" align="center">
     <img src="${NETSTAR_LOGO}" alt="Netstar" width="170" style="display:block;border:0;height:auto;margin:0 auto 10px" />
-    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffffff;letter-spacing:.04em">Supplied and fitted by Motor Prime &mdash; An Authorised Netstar Broker</p>
+    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffffff;letter-spacing:.04em">Sold by Motor Prime &mdash; An Authorised Netstar Broker</p>
   </td></tr>
 </table>
 </td></tr></table>

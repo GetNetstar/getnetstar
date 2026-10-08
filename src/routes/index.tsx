@@ -575,8 +575,8 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5">
           <h2 className="font-display text-3xl font-bold sm:text-4xl">Netstar tracker packages from R89 per month</h2>
           <p className="mt-2 text-muted-foreground">
-            Supplied and fitted by Motor Prime. 36-month rental contract with free installation —
-            no upfront payment.
+            Sold by Motor Prime, an authorised Netstar broker. 36-month rental contract with free
+            installation at a Netstar fitment centre — no upfront payment.
           </p>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {packages.map((p) => (
