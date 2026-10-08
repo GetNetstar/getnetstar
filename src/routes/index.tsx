@@ -295,9 +295,7 @@ function Logo() {
       <img
         src={motorprimeAsset.url}
         alt="Motor Prime vehicle tracking logo"
-        width={480}
-        height={160}
-        className="h-10 w-auto"
+        className="h-10 w-auto object-contain"
       />
       <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-steel/80">
         An Authorised Netstar Broker
@@ -462,7 +460,7 @@ function Index() {
             <p className="mt-6 max-w-lg text-lg text-gray-200 sm:text-xl">
               South Africa&apos;s most trusted vehicle tracking and recovery. Motor Prime brings you
               Netstar&apos;s 24/7 recovery services from just{" "}
-              <span className="font-bold text-white">R129 per month.</span>
+              <span className="font-bold text-white">R89 per month.</span>
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button asChild size="lg" className="uppercase tracking-widest">
@@ -698,9 +696,7 @@ function Index() {
             <img
               src={motorprimeWhiteAsset.url}
               alt="Motor Prime logo"
-              width={480}
-              height={160}
-              className="h-9 w-auto"
+              className="h-9 w-auto object-contain"
             />
             <span className="text-xs uppercase tracking-[0.18em] text-ink-foreground/70">
               An Authorised Netstar Broker
