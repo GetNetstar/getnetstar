@@ -427,7 +427,7 @@ function Index() {
         </div>
       </header>
 
-      <section className="relative isolate overflow-hidden bg-steel">
+      <section className="relative isolate overflow-hidden bg-ink">
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={heliAsset.url}
@@ -440,16 +440,16 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink/40 md:bg-gradient-to-r md:from-ink/95 md:via-ink/85 md:to-ink/25" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
           <div className="max-w-xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 backdrop-blur-md">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 backdrop-blur-md">
               <img
                 src={logoAsset.url}
                 alt="Netstar"
                 width={160}
                 height={60}
-                className="h-5 w-auto"
+                className="h-8 w-auto"
               />
-              <span className="h-3 w-px bg-white/30" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-white">
+              <span className="h-5 w-px bg-white/35" />
+              <span className="text-[13px] font-bold uppercase tracking-[0.18em] text-white">
                 Official Partner
               </span>
             </div>
@@ -629,7 +629,7 @@ function Index() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20">
-        <h2 className="font-display text-3xl font-bold sm:text-4xl">What our clients say</h2>
+        <h2 className="font-display text-3xl font-bold sm:text-4xl">What Netstar clients say</h2>
         <p className="mt-2 text-muted-foreground">
           Trusted by South Africa&apos;s biggest fleets and families alike.
         </p>
