@@ -472,6 +472,7 @@ function Index() {
             <QuoteForm />
           </div>
         </div>
+        <div className="relative h-1.5 w-full bg-gold" />
       </section>
 
       <section className="border-b border-border bg-white">
