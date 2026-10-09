@@ -397,7 +397,7 @@ function QuoteForm() {
         </p>
       )}
       <p className="mt-3 text-center text-xs text-muted-foreground">
-        By clicking you agree to be contacted by Motor Prime regarding Netstar tracking products.
+        By clicking you agree to be contacted by Motor Prime or Netstar regarding Netstar tracking products.
       </p>
     </form>
   );
@@ -434,7 +434,7 @@ function Index() {
             alt="Helicopter with searchlight tracking a car on a South African highway at dusk"
             width={1920}
             height={1088}
-            className="h-full w-full object-cover object-[center_40%]"
+            className="h-full w-full object-contain object-top"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink/40 md:bg-gradient-to-r md:from-ink/95 md:via-ink/85 md:to-ink/25" />
@@ -466,10 +466,6 @@ function Index() {
               <Button asChild size="lg" className="uppercase tracking-widest">
                 <a href="#quote">Secure my vehicle</a>
               </Button>
-              <div className="flex items-center gap-3 rounded-lg border border-white/20 px-6 py-4 font-medium text-white">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-                Active recovery teams online
-              </div>
             </div>
           </div>
           <div id="quote" className="scroll-mt-20">
