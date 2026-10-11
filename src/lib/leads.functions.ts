@@ -20,6 +20,7 @@ const LEAD_RECIPIENTS = [
   "info@motorprime.co.za",
   "quote@getnetstar.co.za",
   "info@getnetstar.co.za",
+  "netstar@motorprime.co.za",
 ];
 
 export const submitLead = createServerFn({ method: "POST" })
