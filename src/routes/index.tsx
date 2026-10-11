@@ -434,7 +434,7 @@ function Index() {
             alt="Helicopter with searchlight tracking a car on a South African highway at dusk"
             width={1920}
             height={1088}
-            className="h-full w-full object-contain object-top"
+            className="h-full w-full object-cover object-[center_35%]"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink/40 md:bg-gradient-to-r md:from-ink/95 md:via-ink/85 md:to-ink/25" />
