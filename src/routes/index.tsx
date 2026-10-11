@@ -695,7 +695,7 @@ function Index() {
               alt="Motor Prime logo"
               className="h-9 w-auto object-contain"
             />
-            <span className="text-xs uppercase tracking-[0.18em] text-ink-foreground/70">
+            <span className="text-[9px] uppercase tracking-[0.11em] text-ink-foreground/70">
               An Authorised Netstar Broker
             </span>
           </div>
