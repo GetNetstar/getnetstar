@@ -64,7 +64,7 @@ export const Route = createFileRoute("/")({
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+27108222855",
-                email: "info@getnetstar.co.za",
+                email: "netstar@motorprime.co.za",
                 contactType: "Sales",
                 areaServed: "ZA",
                 availableLanguage: ["English"],
@@ -93,7 +93,7 @@ export const Route = createFileRoute("/")({
                 "Netstar GPS tracker fitment, car track and stolen vehicle recovery packages from R89 per month in South Africa.",
               url: "https://getnetstar.lovable.app/",
               telephone: "+27108222855",
-              email: "info@getnetstar.co.za",
+              email: "netstar@motorprime.co.za",
               image: "https://getnetstar.lovable.app/images/motorprime-hero.jpg",
               areaServed: {
                 "@type": "Country",
@@ -700,8 +700,8 @@ function Index() {
             </span>
           </div>
           <div className="flex flex-col items-start gap-1 sm:items-end">
-            <a href="mailto:info@getnetstar.co.za" className="hover:text-ink-foreground">
-              info@getnetstar.co.za
+            <a href="mailto:netstar@motorprime.co.za" className="hover:text-ink-foreground">
+              netstar@motorprime.co.za
             </a>
             <a href="tel:0108222855" className="hover:text-ink-foreground">
               010 822 2855
