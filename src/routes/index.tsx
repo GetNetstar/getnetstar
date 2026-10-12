@@ -17,7 +17,7 @@ import { submitLead } from "@/lib/leads.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Netstar Tracker from R129pm | GPS Tracker & Car Track SA" },
+      { title: "Netstar - SA's Leading Vehicle Tracking And Recovery" },
       {
         name: "description",
         content: "Netstar - SA's Leading Vehicle Tracking And Recovery.",
