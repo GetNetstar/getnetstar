@@ -436,7 +436,7 @@ function Index() {
               alt="Netstar recovery team with helicopter and vehicles in South Africa"
               width={1920}
               height={1088}
-              className="h-full w-full object-cover object-[center_35%] max-lg:object-[center_45%]"
+              className="h-full w-full object-contain object-top lg:object-cover lg:object-[center_35%]"
             />
           </picture>
         </div>
