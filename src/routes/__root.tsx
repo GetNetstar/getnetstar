@@ -81,8 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Netstar Tracker | GPS Vehicle Tracking South Africa" },
       {
         name: "description",
-        content:
-          "Netstar GPS tracker and car track packages from R129pm with 24/7 stolen vehicle recovery across South Africa.",
+        content: "Netstar - SA's Leading Vehicle Tracking And Recovery.",
       },
       { name: "author", content: "Motor Prime - Approved Netstar Partner" },
       { property: "og:site_name", content: "Get Netstar" },

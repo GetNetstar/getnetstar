@@ -43,7 +43,7 @@ export const submitLead = createServerFn({ method: "POST" })
     const tableRows = rows
       .map(
         ([k, v]) =>
-          `<tr><td style="padding:12px 16px;border-bottom:1px solid #e6e8ec;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b7280;width:42%">${esc(k)}</td><td style="padding:12px 16px;border-bottom:1px solid #e6e8ec;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0b1533;font-weight:bold">${esc(v)}</td></tr>`,
+          `<tr><td style="padding:12px 16px;border-bottom:1px solid #e6e8ec;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b7280;width:42%">${esc(k)}</td><td style="padding:12px 16px;border-bottom:1px solid #e6e8ec;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#3a3d42;font-weight:bold">${esc(v)}</td></tr>`,
       )
       .join("");
 
@@ -51,19 +51,20 @@ export const submitLead = createServerFn({ method: "POST" })
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f5f7;padding:24px 0">
 <tr><td align="center">
 <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">
-  <tr><td style="background:#1a1c1e;padding:24px 28px" align="left">
-    <img src="${MOTORPRIME_LOGO}" alt="Motor Prime" width="200" style="display:block;border:0;height:auto" />
+  <tr><td style="background:#3a3d42;padding:26px 28px" align="center">
+    <img src="${NETSTAR_LOGO}" alt="Netstar" width="180" style="display:block;border:0;height:auto;margin:0 auto" />
+    <img src="${MOTORPRIME_LOGO}" alt="Motor Prime" width="170" style="display:block;border:0;height:auto;margin:14px auto 8px" />
+    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#d7d9dd;letter-spacing:.04em">An Approved Netstar Broker</p>
   </td></tr>
   <tr><td style="height:5px;background:#fdc70d"></td></tr>
   <tr><td style="padding:28px">
-    <h1 style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#1a1c1e">New Netstar Quote Request</h1>
+    <h1 style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#3a3d42">New Netstar Quote Request</h1>
     <p style="margin:0 0 20px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#54595f">${esc(data.name)} ${esc(data.surname)} requested a Netstar quote via Motor Prime.</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e6e8ec;border-radius:10px;border-collapse:separate">${tableRows}</table>
-    <p style="margin:22px 0 0"><a href="tel:${esc(data.cell.replace(/[^\d+]/g, ""))}" style="display:inline-block;background:#fdc70d;color:#1a1c1e;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:8px">Call ${esc(data.name)}</a></p>
+    <p style="margin:22px 0 0"><a href="tel:${esc(data.cell.replace(/[^\d+]/g, ""))}" style="display:inline-block;background:#fdc70d;color:#3a3d42;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:8px">Call ${esc(data.name)}</a></p>
   </td></tr>
-  <tr><td style="background:#1a1c1e;padding:24px 28px" align="center">
-    <img src="${NETSTAR_LOGO}" alt="Netstar" width="170" style="display:block;border:0;height:auto;margin:0 auto 10px" />
-    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffffff;letter-spacing:.04em">Sold by Motor Prime &mdash; An Authorised Netstar Broker</p>
+  <tr><td style="padding:22px 28px;border-top:1px solid #e6e8ec" align="center">
+    <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;letter-spacing:.04em">Sold by Motor Prime &mdash; An Approved Netstar Broker</p>
   </td></tr>
 </table>
 </td></tr></table>

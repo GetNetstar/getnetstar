@@ -20,8 +20,7 @@ export const Route = createFileRoute("/")({
       { title: "Netstar Tracker from R129pm | GPS Tracker & Car Track SA" },
       {
         name: "description",
-        content:
-          "Get a Netstar tracker fitted from R129 per month. GPS tracker and car track packages with helicopter and ground stolen vehicle recovery, 24/7 in South Africa.",
+        content: "Netstar - SA's Leading Vehicle Tracking And Recovery.",
       },
       { name: "keywords", content: "Netstar, tracker, GPS tracker, car track, vehicle tracking South Africa" },
       { property: "og:title", content: "Netstar Tracker from R129pm | GPS Tracker & Car Track" },
@@ -610,9 +609,9 @@ function Index() {
                   <h3 className="font-display text-xl font-bold">{p.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.blurb}</p>
                   <p className="mt-5 font-display text-4xl font-extrabold">
-                    <span className="mr-1 text-base font-medium opacity-70">from</span>
+                    <span className="mr-1 text-base font-bold opacity-80">from</span>
                     {p.price}
-                    <span className="ml-1 text-base font-medium opacity-70">pm</span>
+                    <span className="ml-1 text-base font-bold opacity-80">pm</span>
                   </p>
                   <ul className="mt-5 space-y-2 text-sm">
                     {p.features.map((f) => (
@@ -681,7 +680,7 @@ function Index() {
             Protect your vehicle today
           </h2>
           <p className="mt-3 text-ink-foreground/70">
-            Fill in the form and a Motor Prime consultant will call you back with your tailored
+            Fill in the form and a friendly consultant will call you back with your tailored
             Netstar quote.
           </p>
           <Button asChild size="lg" className="mt-7">
