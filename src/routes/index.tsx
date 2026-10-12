@@ -429,13 +429,16 @@ function Index() {
 
       <section className="relative isolate overflow-hidden bg-ink">
         <div className="absolute inset-0 overflow-hidden">
-          <img
-            src={heliAsset.url}
-            alt="Helicopter with searchlight tracking a car on a South African highway at dusk"
-            width={1920}
-            height={1088}
-            className="h-full w-full object-cover object-[center_35%]"
-          />
+          <picture>
+            <source media="(max-width: 1023px)" srcSet="/images/netstar-team-mobile.jpg" />
+            <img
+              src={heliAsset.url}
+              alt="Netstar recovery team with helicopter and vehicles in South Africa"
+              width={1920}
+              height={1088}
+              className="h-full w-full object-cover object-[center_35%] max-lg:object-[center_45%]"
+            />
+          </picture>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-ink/95 via-ink/80 to-ink/40 md:bg-gradient-to-r md:from-ink/95 md:via-ink/85 md:to-ink/25" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-2 lg:items-center lg:py-24">
